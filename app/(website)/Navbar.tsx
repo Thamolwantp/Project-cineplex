@@ -33,45 +33,44 @@ const Navbar: React.FC = () => {
       margin: "0 5px",
     },
     hero: {
-      position: "relative" as const,
-      backgroundImage: "url('/cineplex.png')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      height: "500px",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      color: "#fff",
-    },
-    heroContent: {
-      textAlign: "center" as const,
-      background: "rgba(0, 0, 0, 0.6)",
-      padding: "20px",
-      borderRadius: "10px",
+      display: "flex", // ใช้ flexbox
+      flexDirection: "row", // จัดให้เนื้อหาภายในอยู่ในแถวเดียวกัน
+      justifyContent: "center", // จัดให้อยู่ตรงกลาง
+      alignItems: "center", // จัดให้อยู่กลางในแนวตั้ง
+      width: "100%",
+      padding: "20px", // เพิ่มช่องว่างภายใน
+      gap: "10px", // เพิ่มระยะห่างเล็กน้อยระหว่างแต่ละส่วน
+      backgroundColor: "#D6BB56", // กำหนดสีพื้นหลังเป็น #D6BB56
     },
     ticketSection: {
-      h1: {
-        fontSize: "36px",
-        marginBottom: "20px",
-      },
-      form: {
-        display: "flex",
-        gap: "10px",
-        justifyContent: "center",
-        alignItems: "center",
-      },
-      input: {
-        padding: "10px",
-        fontSize: "16px",
-      },
-      button: {
-        backgroundColor: hover ? "#dba900" : "#b88a00",
-        color: "#fff",
-        border: "none",
-        cursor: "pointer",
-        padding: "10px",
-        fontSize: "16px",
-      },
+      display: "flex",
+      alignItems: "center", // ให้ทุกอย่างอยู่ในแถวเดียวกัน
+      gap: "10px", // เพิ่มระยะห่างเล็กน้อยระหว่างองค์ประกอบ
+      backgroundColor: "#D6BB56", // กำหนดสีพื้นหลังเป็น #D6BB56
+      padding: "10px", // เพิ่มระยะห่างภายใน
+      borderRadius: "5px", // เพิ่มมุมโค้งให้สวยงาม
+    },
+    input: {
+      padding: "10px",
+      fontSize: "16px",
+      color: "#fff", // สีข้อความเป็นสีขาว
+      backgroundColor: "#333", // สีพื้นหลังของ select
+      margin: "0", // ไม่มีระยะห่างระหว่าง select
+    },
+    button: {
+      backgroundColor: hover ? "#dba900" : "#b88a00",
+      color: "#fff",
+      border: "none",
+      cursor: "pointer",
+      padding: "10px",
+      fontSize: "16px",
+      margin: "0", // ไม่มีระยะห่างระหว่างปุ่ม
+    },
+    image: {
+      width: "100vw", // ให้ภาพยาวเต็มหน้าจอ
+      height: "auto", // ให้ความสูงปรับตามอัตราส่วนของภาพ
+      maxHeight: "500px", // กำหนดความสูงสูงสุดให้กับรูปภาพ
+      marginTop: "20px", // ระยะห่างระหว่างฟอร์มและรูปภาพ
     },
   };
 
@@ -80,7 +79,8 @@ const Navbar: React.FC = () => {
       {/* Navbar */}
       <nav style={styles.navbar}>
         <div>
-          <img src="/cineplex.png" alt="Vestra Cineplex Logo" style={styles.logo} />
+          {/* โลโก้หรือข้อความแทนรูปภาพ */}
+          <span style={{ color: "#fff", fontSize: "24px" }}>Vestra Cineplex</span>
         </div>
         <ul style={styles.navLinks}>
           <li><a href="#" style={styles.navLink}>หน้าหลัก</a></li>
@@ -94,36 +94,42 @@ const Navbar: React.FC = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <header style={styles.hero}>
-        <div style={styles.heroContent}>
-          <div>
-            <h1 style={styles.ticketSection.h1}>BUY TICKET</h1>
-            <form style={styles.ticketSection.form}>
-              <select style={styles.ticketSection.input}>
-                <option value="">ค้นหาภาพยนตร์</option>
-                <option value="movie1">ภาพยนตร์ 1</option>
-                <option value="movie2">ภาพยนตร์ 2</option>
-                <option value="movie3">ภาพยนตร์ 3</option>
-              </select>
-              <select style={styles.ticketSection.input}>
-                <option value="">ค้นหาโรงภาพยนตร์</option>
-                <option value="cinema1">โรง 1</option>
-                <option value="cinema2">โรง 2</option>
-                <option value="cinema3">โรง 3</option>
-              </select>
-              <button
-                type="button"
-                style={styles.ticketSection.button}
-                onMouseOver={() => setHover(true)}
-                onMouseOut={() => setHover(false)}
-              >
-                รอบฉาย
-              </button>
-            </form>
-          </div>
+      {/* Hero Section (Buy Ticket) */}
+      <div style={styles.hero}>
+        {/* ส่วนของ BUY TICKET */}
+        <h1 style={{ fontSize: "36px", marginRight: "10px", color: "black" }}>BUY TICKET</h1>
+        
+        {/* ฟอร์มการเลือกภาพยนตร์และโรงภาพยนตร์ */}
+        <div style={styles.ticketSection}>
+          <select style={styles.input}>
+            <option value="">ภาพยนตร์ 2</option>
+            <option value="movie1">ภาพยนตร์ 1</option>
+            <option value="movie2">ภาพยนตร์ 2</option>
+            <option value="movie3">ภาพยนตร์ 3</option>
+          </select>
+          <select style={styles.input}>
+            <option value="">โรง 2</option>
+            <option value="cinema1">โรง 1</option>
+            <option value="cinema2">โรง 2</option>
+            <option value="cinema3">โรง 3</option>
+          </select>
+          <button
+            type="button"
+            style={styles.button}
+            onMouseOver={() => setHover(true)}
+            onMouseOut={() => setHover(false)}
+          >
+            รอบฉาย
+          </button>
         </div>
-      </header>
+      </div>
+
+      {/* รูปภาพจาก Imgur */}
+      <img
+        src="https://i.imgur.com/0tHA1Pe.png" // ใช้ลิงก์ของภาพจาก Imgur
+        alt="Cineplex"
+        style={styles.image}
+      />
     </div>
   );
 };
