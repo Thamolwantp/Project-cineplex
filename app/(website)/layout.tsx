@@ -5,8 +5,8 @@ export default function WebsiteLayout({
 }) {
     return (
         <>
-            <div className="">หด 55555555 Fx</div>
-            <div className="">dsdad{children}</div>
+            <div className="">หด 55555555</div>
+            <div className="">{children}</div>
         </>
 
     )
