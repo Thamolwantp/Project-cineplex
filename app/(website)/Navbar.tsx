@@ -80,7 +80,7 @@ const Navbar: React.FC = () => {
       {/* Navbar */}
       <nav style={styles.navbar}>
         <div>
-          <img src="/cineplex.png" alt="Vestra Cineplex" style={styles.logo} />
+          <img src="/cineplex.png" alt="Vestra Cineplex Logo" style={styles.logo} />
         </div>
         <ul style={styles.navLinks}>
           <li><a href="#" style={styles.navLink}>หน้าหลัก</a></li>
