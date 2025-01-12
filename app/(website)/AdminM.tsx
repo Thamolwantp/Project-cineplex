@@ -95,6 +95,9 @@ const MoviePage: React.FC = () => {
     },
   ]);
 
+  const [isDeleteMode, setIsDeleteMode] = useState(false);  // โหมดการลบ
+  const [showDeleteLabel, setShowDeleteLabel] = useState(false);  // แสดง/ซ่อนข้อความ "รายการภาพยนต์ทั้งหมด (เลือกลบ)"
+
   const handleDeleteMovie = (categoryTitle: string, movieId: number) => {
     setCategories(prevCategories => {
       return prevCategories.map(category => {
@@ -109,11 +112,24 @@ const MoviePage: React.FC = () => {
     });
   };
 
+  const handleToggleDeleteMode = () => {
+    setIsDeleteMode(!isDeleteMode);  // เปลี่ยนโหมดการลบ
+    setShowDeleteLabel(!showDeleteLabel);  // แสดง/ซ่อนข้อความเมื่อกดเลือกลบ
+  };
+
   return (
     <div style={styles.page}>
+      {/* ข้อความแสดงเมื่อกด "เลือกลบ" */}
+      {showDeleteLabel && (
+        <div style={styles.deleteLabel}>
+        รายการภาพยนต์ทั้งหมด (เลือกลบ)
+        </div>
+      )}
+
       {categories.map((category, index) => (
         <div key={index}>
           <header style={styles.header}>
+            {/* ให้ชื่อหมวดหมู่ "ภาพยนตร์แนะนำ" และข้อความ "รายการภาพยนต์ทั้งหมด (เลือกลบ)" ตรงกัน */}
             <h2 style={styles.categoryTitle}>{category.title}</h2>
             <div style={styles.deleteSection}>
               {category.title === "ภาพยนตร์แนะนำ" && (
@@ -121,24 +137,31 @@ const MoviePage: React.FC = () => {
                   <div style={styles.border}></div>
                   <button
                     style={styles.deleteButton}
-                    onClick={() => handleDeleteMovie(category.title, category.movies[0].id)}
+                    onClick={handleToggleDeleteMode}  // เปลี่ยนโหมดการลบ
                   >
-                    <FaTrash size={20} />
-                    <span style={styles.deleteText}>เลือกลบภาพยนตร์</span>
+                    {!isDeleteMode && <FaTrash size={20} />} {/* แสดงไอคอนลบเมื่อไม่อยู่ในโหมดยกเลิก */}
+                    {isDeleteMode ? "ยกเลิก" : "เลือกลบภาพยนตร์"}  {/* เปลี่ยนข้อความตามสถานะ */}
                   </button>
                 </>
               )}
-              {category.title === "กำลังฉาย" && (
-                <div style={styles.border}></div>
-              )}
-              {category.title === "โปรแกรมหน้า" && (
-                <div style={styles.border}></div>
-              )}
+              {category.title === "กำลังฉาย" && <div style={styles.border}></div>}
+              {category.title === "โปรแกรมหน้า" && <div style={styles.border}></div>}
             </div>
           </header>
+
           <div style={styles.movieList}>
-            {category.movies.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
+            {category.movies.map(movie => (
+              <div key={movie.id} style={styles.movieItem}>
+                <MovieCard movie={movie} />
+                {isDeleteMode && (
+                  <div
+                    style={styles.deleteIcon}
+                    onClick={() => handleDeleteMovie(category.title, movie.id)} // ลบภาพยนตร์
+                  >
+                    <FaTrash size={24} color="white" />  {/* ไอคอนขนาดใหญ่ขึ้น */}
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -146,64 +169,85 @@ const MoviePage: React.FC = () => {
     </div>
   );
 };
-
 const styles = {
-  page: {
-    background: "linear-gradient(to bottom, #7b0000, #1a1a1a)",
-    color: "white",
-    padding: "20px",
-    fontFamily: "'Arial', sans-serif",
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-  },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    marginBottom: "10px",
-  },
-  categoryTitle: {
-    fontSize: "1.8rem",
-    color: "white",
-    margin: "0",
-    paddingRight: "20px",  // เพิ่มระยะห่างระหว่างข้อความและเส้น
-    textAlign: "left",
-  },
-  deleteSection: {
-    display: "flex",
-    alignItems: "center",  // ให้ตัวหนังสือและปุ่มลบอยู่ในบรรทัดเดียวกัน
-    gap: "10px",  // ระยะห่างระหว่างเส้นและปุ่ม
-    justifyContent: "flex-start",  // ให้คอนเทนเนอร์อยู่ทางซ้าย
-    flexGrow: 1,  // ขยายพื้นที่ให้เต็มที่
-  },
-  deleteButton: {
-    background: "transparent",
-    border: "none",
-    color: "#D6BB56",
-    cursor: "pointer",
-    padding: "5px",
-    display: "flex",
-    alignItems: "center",
-  },
-  deleteText: {
-    marginLeft: "8px",
-    fontSize: "1rem",
-  },
-  border: {
-    flexGrow: 1,  // ให้เส้นขยายเต็มพื้นที่ที่เหลือ
-    height: "2px",
-    backgroundColor: "#D6BB56",
-    margin: "0 10px",  // ขยับเส้นให้ใกล้ข้อความมากขึ้น
-  },
-  movieList: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "nowrap",
-    gap: "20px",
-    justifyContent: "flex-start",
-    overflowX: "auto",
-    paddingBottom: "20px",
-  },
-};
-
-export default MoviePage;
+    page: {
+      background: "linear-gradient(to bottom, #7b0000, #1a1a1a)",
+      color: "white",
+      padding: "20px",
+      fontFamily: "'Arial', sans-serif",
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column",
+    },
+    deleteLabel: {
+      fontSize: "1.8rem",  // ขนาดตัวอักษรเท่ากับ "ภาพยนตร์แนะนำ"
+      color: "#D6BB56",  // สีทอง
+      marginBottom: "20px",
+      textAlign: "left",  // ข้อความอยู่ซ้ายสุด
+      marginLeft: "10px", // ปรับระยะห่างจากขอบซ้ายเพิ่มขึ้น
+    },
+    header: {
+      display: "flex",
+      alignItems: "center",
+      marginBottom: "10px",
+    },
+    categoryTitle: {
+      fontSize: "1.8rem",  // ขนาดตัวอักษรเท่ากัน
+      color: "white",
+      margin: "0",
+      paddingRight: "20px",
+      textAlign: "left",
+    },
+    deleteSection: {
+      display: "flex",
+      alignItems: "center",
+      gap: "10px",
+      justifyContent: "flex-start",
+      flexGrow: 1,
+    },
+    deleteButton: {
+      background: "transparent",
+      border: "none",
+      color: "#D6BB56",
+      cursor: "pointer",
+      padding: "5px",
+      display: "flex",
+      alignItems: "center",
+      fontSize: "1rem",
+    },
+    deleteText: {
+      marginLeft: "8px",
+      fontSize: "1rem",
+    },
+    border: {
+      flexGrow: 1,
+      height: "2px",
+      backgroundColor: "#D6BB56",
+      margin: "0 10px",
+    },
+    movieList: {
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "nowrap",
+      gap: "20px",
+      justifyContent: "flex-start",
+      overflowX: "auto",
+      paddingBottom: "20px",
+    },
+    movieItem: {
+      position: "relative", // เพื่อให้ตำแหน่งของปุ่มลบตรงกลางของภาพยนตร์
+    },
+    deleteIcon: {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      backgroundColor: "red",
+      borderRadius: "50%",
+      padding: "15px",
+      cursor: "pointer",
+    },
+  };
+  
+  export default MoviePage;
+  
