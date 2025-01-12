@@ -1,7 +1,6 @@
 "use client"; // ระบุให้เป็น Client Component เพื่อให้รองรับ Event Handlers
 
 import React, { useState } from "react";
-import { FaFacebook, FaYoutube, FaTwitter } from 'react-icons/fa'; // ใช้ไอคอนจาก react-icons
 
 const Navbar: React.FC = () => {
   const [hover, setHover] = useState<string | null>(null); // ใช้ค่าหลายตัวแทนที่ไม่ใช่ boolean
@@ -243,18 +242,7 @@ const Navbar: React.FC = () => {
         style={styles.image}
       />
 
-      {/* Footer */}
-      <div style={styles.footer}>
-        {/* โลโก้ใน Footer */}
-        <img src="https://i.imgur.com/Vfm7Jyr.png" alt="Vestra Cineplex" style={styles.footerLogo} />
-
-        {/* ไอคอนโซเชียล */}
-        <div style={styles.socialIcons}>
-          <FaFacebook style={styles.socialIcon} />
-          <FaYoutube style={styles.socialIcon} />
-          <FaTwitter style={styles.socialIcon} />
-        </div>
-      </div>
+      
     </div>
   );
 };
