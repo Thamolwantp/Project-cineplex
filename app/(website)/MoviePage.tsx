@@ -32,13 +32,29 @@ const MoviePage: React.FC = () => {
           duration: "120 นาที",
           posterUrl: "https://www.tnnthailand.com/static/inline-images/news/1893711045f33bb2716f3a.jpeg",
         },
+        {
+          id: 4,
+          title: "หอแต๋วแตก 2",
+          releaseDate: "10 FEB 2024",
+          type: "Comedy",
+          duration: "100 นาที",
+          posterUrl: "https://www.example.com/your-poster-image-url.jpg",
+        },
+        {
+          id: 5,
+          title: "คุมเกม",
+          releaseDate: "15 FEB 2024",
+          type: "Action",
+          duration: "110 นาที",
+          posterUrl: "https://www.example.com/your-poster-image-url.jpg",
+        },
       ],
     },
     {
       title: "กำลังฉาย",
       movies: [
         {
-          id: 4,
+          id: 6,
           title: "Never Let Go",
           releaseDate: "01 FEB 2024",
           type: "Action",
@@ -46,7 +62,7 @@ const MoviePage: React.FC = () => {
           posterUrl: "https://th.bing.com/th/id/OIP.UO0Uwm4pQLQxdiyDccCSyAHaKe?rs=1&pid=ImgDetMain",
         },
         {
-          id: 5,
+          id: 7,
           title: "Avengers: Endgame",
           releaseDate: "01 FEB 2024",
           type: "Sci-Fi",
@@ -59,7 +75,7 @@ const MoviePage: React.FC = () => {
       title: "โปรแกรมหน้า",
       movies: [
         {
-          id: 6,
+          id: 8,
           title: "The Flash",
           releaseDate: "15 FEB 2024",
           type: "Adventure",
@@ -67,7 +83,7 @@ const MoviePage: React.FC = () => {
           posterUrl: "https://m.media-amazon.com/images/I/71oXaw7wizL._AC_UF894,1000_QL80_.jpg",
         },
         {
-          id: 7,
+          id: 9,
           title: "Aquaman 2",
           releaseDate: "20 FEB 2024",
           type: "Fantasy",
@@ -84,7 +100,7 @@ const MoviePage: React.FC = () => {
         <div key={index}>
           <header style={styles.header}>
             <h2 style={styles.categoryTitle}>{category.title}</h2>
-            <div style={styles.borderLine}></div> {/* เพิ่มเส้นที่นี่ */}
+            <div style={styles.borderLine}></div>
           </header>
           <div style={styles.movieList}>
             {category.movies.map((movie) => (
@@ -105,29 +121,31 @@ const styles = {
     fontFamily: "'Arial', sans-serif",
     minHeight: "100vh",
     display: "flex",
-    flexDirection: "column", // ใช้การจัดในรูปแบบคอลัมน์
+    flexDirection: "column",
   },
   header: {
-    display: "flex",  // ใช้ flexbox เพื่อจัดแนวหัวข้อและเส้นในบรรทัดเดียวกัน
-    alignItems: "center",  // จัดให้ทั้งสองอยู่ตรงกลาง
+    display: "flex",
+    alignItems: "center",
     marginBottom: "10px",
   },
   categoryTitle: {
     fontSize: "1.8rem",
     color: "white",
-    margin: "0", // ลบ margin ด้านบนและล่างออก
-    paddingRight: "10px", // เว้นระยะห่างระหว่างชื่อหัวข้อกับเส้น
+    margin: "0",
+    paddingRight: "10px",
   },
   borderLine: {
-    flex: 1, // ให้เส้นยืดเต็มความกว้างที่เหลือ
-    borderBottom: "2px solid #D6BB56", // เส้นสีทอง
+    flex: 1,
+    borderBottom: "2px solid #D6BB56",
   },
   movieList: {
     display: "flex",
-    flexDirection: "row", // ให้หนังอยู่ในแถว
-    flexWrap: "wrap", // เมื่อหนังเยอะให้พับไปที่แถวถัดไป
+    flexDirection: "row",
+    flexWrap: "nowrap",
     gap: "20px",
-    justifyContent: "flex-start", // จัดให้หนังอยู่ทางซ้าย
+    justifyContent: "flex-start",
+    overflowX: "auto",
+    paddingBottom: "20px",
   },
 };
 
