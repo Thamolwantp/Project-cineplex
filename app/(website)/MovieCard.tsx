@@ -41,8 +41,9 @@ const styles = {
     backgroundColor: "#2c2c2c",
     borderRadius: "10px",
     overflow: "hidden",
-    textAlign: "center",
     width: "200px",
+    height: "auto",  // เพิ่มความสูงที่เหมาะสม
+    margin: "10px",  // เพิ่มระยะห่างระหว่างการ์ด
   },
   moviePoster: {
     width: "100%",
@@ -51,23 +52,30 @@ const styles = {
   },
   movieInfo: {
     padding: "10px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",  // จัดให้ข้อมูลไปทางซ้าย
+    textAlign: "left",  // จัดข้อความทั้งหมดไปทางซ้าย
+    gap: "8px",  // เพิ่มระยะห่างระหว่างข้อมูลแต่ละบรรทัด
   },
   releaseDate: {
-    margin: "5px 0",
+    margin: "0",
+    fontSize: "0.9rem",
+    color: "#ccc",
   },
   movieTitle: {
     fontSize: "1.2rem",
     fontWeight: "bold",
-    margin: "5px 0",
+    margin: "0",
     color: "white",
   },
   movieType: {
-    margin: "5px 0",
+    margin: "0",
     fontSize: "0.9rem",
     color: "#ccc",
   },
   movieDuration: {
-    margin: "5px 0",
+    margin: "0",
     fontSize: "0.9rem",
     color: "#ccc",
   },
