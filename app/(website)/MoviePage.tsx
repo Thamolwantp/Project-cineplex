@@ -22,7 +22,7 @@ const MoviePage: React.FC = () => {
           releaseDate: "01 FEB 2024",
           type: "Horror",
           duration: "120 นาที",
-          posterUrl: "https://thethaiger.com/th/wp-content/uploads/2023/10/%E0%B8%98%E0%B8%B5%E0%B0%B8%E0%B8%99%E0%B8%94.jpg",
+          posterUrl: "https://thethaiger.com/th/wp-content/uploads/2023/10/%E0%B8%98%E0%B8%B5%E0%B8%AB%E0%B8%A2%E0%B8%94-%E0%B8%93%E0%B9%80%E0%B8%94%E0%B8%8A%E0%B8%99%E0%B8%8D%E0%B8%87.jpg",
         },
         {
           id: 3,
@@ -84,8 +84,7 @@ const MoviePage: React.FC = () => {
         <div key={index}>
           <header style={styles.header}>
             <h2 style={styles.categoryTitle}>{category.title}</h2>
-            {/* เพิ่มเส้นตรงตรงนี้ */}
-            <div style={styles.borderLine}></div>
+            <div style={styles.borderLine}></div> {/* เพิ่มเส้นที่นี่ */}
           </header>
           <div style={styles.movieList}>
             {category.movies.map((movie) => (
@@ -105,6 +104,8 @@ const styles = {
     padding: "20px",
     fontFamily: "'Arial', sans-serif",
     minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column", // ใช้การจัดในรูปแบบคอลัมน์
   },
   header: {
     display: "flex",  // ใช้ flexbox เพื่อจัดแนวหัวข้อและเส้นในบรรทัดเดียวกัน
@@ -114,18 +115,19 @@ const styles = {
   categoryTitle: {
     fontSize: "1.8rem",
     color: "white",
-    margin: "0",  // ลบ margin ด้านบนและล่างออก
-    paddingRight: "10px",  // เว้นระยะห่างระหว่างชื่อหัวข้อกับเส้น
+    margin: "0", // ลบ margin ด้านบนและล่างออก
+    paddingRight: "10px", // เว้นระยะห่างระหว่างชื่อหัวข้อกับเส้น
   },
   borderLine: {
-    flex: 1,  // ให้เส้นยืดเต็มความกว้างที่เหลือ
-    borderBottom: "2px solid #D6BB56",  // เส้นสีทอง
+    flex: 1, // ให้เส้นยืดเต็มความกว้างที่เหลือ
+    borderBottom: "2px solid #D6BB56", // เส้นสีทอง
   },
   movieList: {
     display: "flex",
-    justifyContent: "center",
+    flexDirection: "row", // ให้หนังอยู่ในแถว
+    flexWrap: "wrap", // เมื่อหนังเยอะให้พับไปที่แถวถัดไป
     gap: "20px",
-    flexWrap: "wrap",
+    justifyContent: "flex-start", // จัดให้หนังอยู่ทางซ้าย
   },
 };
 
