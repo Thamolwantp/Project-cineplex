@@ -6,6 +6,7 @@ const MovieForm = () => {
   const [showtimes, setShowtimes] = useState([{ id: 1, time: "" }]);
   const [selectedDubbing, setSelectedDubbing] = useState<string | null>(null); // สำหรับพากย์
   const [selectedTag, setSelectedTag] = useState<string | null>(null); // สำหรับแท็ก
+  const [image, setImage] = useState<File | null>(null); // สำหรับเก็บไฟล์รูปภาพที่เลือก
 
   const toggleSelection = (item: string, type: "dubbing" | "tag") => {
     if (type === "dubbing") {
@@ -20,6 +21,13 @@ const MovieForm = () => {
     setShowtimes([...showtimes, { id: showtimes.length + 1, time: "" }]);
   };
 
+  // ฟังก์ชันสำหรับจัดการการเลือกรูป
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setImage(e.target.files[0]); // เก็บไฟล์รูปภาพที่เลือก
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-red-900 to-black text-white p-8">
       <div className="max-w-4xl mx-auto bg-black bg-opacity-50 p-6 rounded-lg">
@@ -28,9 +36,27 @@ const MovieForm = () => {
           {/* Left Section */}
           <div className="space-y-4 mb-6 flex flex-col items-center">
             <div className="w-64 h-80 bg-gray-700 flex items-center justify-center rounded mb-2">
-              รูป
+              {image ? (
+                <img
+                  src={URL.createObjectURL(image)}
+                  alt="Selected"
+                  className="w-full h-full object-cover rounded"
+                />
+              ) : (
+                "รูป"
+              )}
             </div>
-            <button type="button" className="bg-gray-800 py-1 px-3 rounded mt-2">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="hidden" // ซ่อน input file
+            />
+            <button
+              type="button"
+              className="bg-gray-800 py-1 px-3 rounded mt-2"
+              onClick={() => document.querySelector('input[type="file"]')?.click()}
+            >
               เพิ่มรูป
             </button>
           </div>
@@ -117,7 +143,7 @@ const MovieForm = () => {
                 "เวสตรา ซินีเพล็กซ์ พารากอน",
                 "เวสตรา ซินีเพ็อกซ์ เซ็นทรัล ลาดพร้าว",
                 "เวสตรา ซินีเพล็กซ์ เซ็นทรัล บางนา",
-                "เวสตรา ซินีเพล็กซ์ เซ็นทรัลเวิลด์",
+                "เวสตรา ซินีเพ็กซ์ เซ็นทรัลเวิลด์",
               ].map((item, index) => (
                 <div key={item} className="flex items-center space-x-2">
                   <input
