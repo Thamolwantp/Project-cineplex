@@ -4,6 +4,21 @@ import React, { useState } from "react";
 
 const MovieForm = () => {
   const [showtimes, setShowtimes] = useState([{ id: 1, time: "" }]);
+  const [selectedDubbing, setSelectedDubbing] = useState<string | null>(null); // สำหรับพากย์
+  const [selectedTag, setSelectedTag] = useState<string | null>(null); // สำหรับแท็ก
+
+  const toggleSelection = (item: string, type: "dubbing" | "tag") => {
+    if (type === "dubbing") {
+      setSelectedDubbing((prev) => (prev === item ? null : item)); // สำหรับพากย์
+    } else {
+      setSelectedTag((prev) => (prev === item ? null : item)); // สำหรับแท็ก
+    }
+  };
+
+  // ฟังก์ชันสำหรับเพิ่มรอบฉาย
+  const handleAddShowtime = () => {
+    setShowtimes([...showtimes, { id: showtimes.length + 1, time: "" }]);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-red-900 to-black text-white p-8">
@@ -54,36 +69,73 @@ const MovieForm = () => {
                 />
               </div>
             </div>
+
+            {/* PAKY Section (Buttons) */}
+            <div>
+              <label className="block text-sm">พากย์</label>
+              <div className="flex space-x-4">
+                {["TH", "EN", "subTH"].map((item) => (
+                  <button
+                    key={item}
+                    type="button"
+                    onClick={() => toggleSelection(item, "dubbing")}
+                    className={`${
+                      selectedDubbing === item ? "bg-blue-500" : "bg-gray-800"
+                    } py-1 px-3 rounded`}
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Tag Section (Buttons) */}
             <div>
               <label className="block text-sm">แท็ก</label>
               <div className="flex space-x-4">
-                <button type="button" className="bg-gray-800 py-1 px-3 rounded">
-                  ยอดนิยม
-                </button>
-                <button type="button" className="bg-gray-800 py-1 px-3 rounded">
-                  กำลังฉาย
-                </button>
-                <button type="button" className="bg-gray-800 py-1 px-3 rounded">
-                  โปรแกรมหน้า
-                </button>
+                {["ยอดนิยม", "กำลังฉาย", "โปรแกรมหน้า"].map((item) => (
+                  <button
+                    key={item}
+                    type="button"
+                    onClick={() => toggleSelection(item, "tag")}
+                    className={`${
+                      selectedTag === item ? "bg-blue-500" : "bg-gray-800"
+                    } py-1 px-3 rounded`}
+                  >
+                    {item}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
 
+          {/* โรงภาพยนตร์ Section with Images */}
           <div className="col-span-2">
             <label className="block text-sm">โรงภาพยนตร์</label>
-            <div className="space-y-2">
-              <div className="flex items-center space-x-4">
-                <label>
-                  <input type="checkbox" className="mr-2" /> สาขา 1
-                </label>
-                <label>
-                  <input type="checkbox" className="mr-2" /> สาขา 2
-                </label>
-              </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                "เวสตรา ซินีเพล็กซ์ พารากอน",
+                "เวสตรา ซินีเพ็อกซ์ เซ็นทรัล ลาดพร้าว",
+                "เวสตรา ซินีเพล็กซ์ เซ็นทรัล บางนา",
+                "เวสตรา ซินีเพล็กซ์ เซ็นทรัลเวิลด์",
+              ].map((item, index) => (
+                <div key={item} className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    className="mr-2 w-6 h-6 border-2 rounded-full border-gray-700 accent-blue-500"
+                  />
+                  <img
+                    src="https://i.imgur.com/Vfm7Jyr.png"
+                    alt={item}
+                    className="w-12 h-12"
+                  />
+                  <label>{item}</label>
+                </div>
+              ))}
             </div>
           </div>
 
+          {/* วันที่ฉายและสิ้นสุดวันฉาย */}
           <div className="col-span-2">
             <label className="block text-sm">วันที่ฉาย</label>
             <input
@@ -93,6 +145,15 @@ const MovieForm = () => {
           </div>
 
           <div className="col-span-2">
+            <label className="block text-sm">สิ้นสุดวันฉาย</label>
+            <input
+              type="date"
+              className="w-full bg-gray-800 text-white p-2 rounded border border-gray-700"
+            />
+          </div>
+
+          {/* รอบฉาย (เวลา) */}
+          <div className="col-span-2">
             <label className="block text-sm">รอบฉาย (เวลา)</label>
             {showtimes.map((showtime, index) => (
               <div key={showtime.id} className="flex space-x-4 mb-2">
@@ -100,6 +161,15 @@ const MovieForm = () => {
                   type="time"
                   className="bg-gray-800 text-white p-2 rounded border border-gray-700"
                 />
+                {index === showtimes.length - 1 && (
+                  <button
+                    type="button"
+                    onClick={handleAddShowtime}
+                    className="bg-gray-800 py-1 px-3 rounded text-white"
+                  >
+                    เพิ่มรอบ
+                  </button>
+                )}
               </div>
             ))}
           </div>
