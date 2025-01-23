@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import MovieCard from "./MovieCard";
+import MovieCard from "./Mcard/MovieCard";
 
 const MoviePage: React.FC = () => {
   const categories = [
