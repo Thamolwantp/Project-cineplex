@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #000;
+    color: #FFD700;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #111;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .mainContent {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .posterSection {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+  }
+  
+  .posterPlaceholder {
+    width: 150px;
+    height: 200px;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFD700;
+    margin-left: 400px;
+  }
+  
+  .detailsSection {
+    flex: 2;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50px;
+  }
+  
+  .detailsSection h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .detailsSection p {
+    margin: 5px 0;
+  }
+  
+  .dateTimeContainer {
+    margin-bottom: 20px;
+  }
+  
+  .dateTimeSection {
+    margin-bottom: 20px;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .dateButtons {
+    display: flex;
+    padding: 10px;
+    justify-content: left;
+  }
+
+  .dateButton1 {
+    margin-right: 10px;
+    height: 60px;
+    width: 70px;
+    border: 2.5px solid #FFD700;
+  }
+  .dateButton2 {
+    margin-right: 30px;
+    margin-left: 20px;
+    color: #333;
+    height: 60px;
+    width: 2px;
+    border: 2.5px solid #949494;
+  }
+  .dateButton1:hover {
+    background: #FFD700;
+    color: #ffffff;
+    border: 2.5px solid #ffffff;
+  }
+  .dateButton1.selected,.dateButton2.selected {
+    background-color: #FFD700; 
+    color: white; 
+    border: 2.5px solid #ffffff;
+  }
+  
+  .dateButton {
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .timeSlotsSection {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .timeButtons {
+    display: flex;
+    justify-content: left;
+  }
+  
+  .timeButtons {
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .timeButton1 {
+    margin-right: 5px;
+    height: 40px;
+    width: 80px;
+    border: 2.5px solid #FFD700;
+  }
+  .timeButton1:hover {
+    background: #FFD700;
+    color: #ffffff;
+    border: 2.5px solid #ffffff;
+  }
+  .timeButton1.selected {
+    background-color: #FFD700; 
+    color: white; 
+    border: 2.5px solid #ffffff;
+  }
+
+  
+  .confirmSection {
+    text-align: center;
+    color: #000000;
+  }
+  
+  .confirmButton {
+    background-color: #FFD700;
+    margin-top: 10px;
+    width: 200px;
+    height: 40px;
+    border: 2px solid #000;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .confirmButton:hover {
+    background: #FFD700;
+    color: #000000;
+    border: 2.5px solid #ffffff;
+  }
+  .confirmButton:active {
+    background: #ffffff;
+    color: #000000;
+    border: 2.5px solid #000000;
+  }

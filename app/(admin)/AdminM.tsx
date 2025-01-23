@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { FaTrash } from "react-icons/fa";  // ใช้ไอคอนลบจาก react-icons
-import MovieCard from "./MovieCard";
+import MovieCard from "../(website)/Movie/Mcard/MovieCard";
 
 const MoviePage: React.FC = () => {
   const [categories, setCategories] = useState([

@@ -1,0 +1,33 @@
+/* Footer styles */
+.footer {
+    background: linear-gradient(to top, #d6bb56, #70622d);
+    color: #fff;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between; /* จัดวางโลโก้และไอคอน Social */
+    align-items: center;
+    width: 100%; /* กำหนดความกว้างเต็มหน้าจอ */
+    margin-top: 40px; /* เพิ่มระยะห่างจากเนื้อหาด้านบน */
+  }
+  
+  .footerLogo {
+    height: 80px; /* ปรับขนาดโลโก้ */
+  }
+  
+  .socialIcons {
+    display: flex;
+    gap: 20px; /* ระยะห่างระหว่างไอคอน */
+  }
+  
+  .socialIcon {
+    color: #000;
+    font-size: 30px; /* ขนาดของไอคอน */
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s; /* เพิ่มเอฟเฟกต์ */
+  }
+  
+  .socialIcon:hover {
+    transform: scale(1.2); /* ขยายไอคอนเมื่อ hover */
+    color: #ffd700; /* เปลี่ยนสีไอคอนเมื่อ hover */
+  }
+  

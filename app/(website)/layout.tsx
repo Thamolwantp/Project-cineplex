@@ -8,12 +8,15 @@ import NavbarAM from "@/components/ForAdmin/NavbarAM"
 import AdminP from "@/app/(admin)/AdminP"
 import MovieNow from "@/app/(website)/Movie/Mnow/MovieNow"
 import NavbarMN from "@/components/ForAdmin/NavbarMN"
+import Login from "./login/page";
+import Buyticket from "@/app/(website)/buyticket/page"
+import Register from "@/app/(website)/register/page"
 
 export default function Home() {
   return (
     <>
-    <NavbarMN></NavbarMN>
-      <MovieNow/>
+    <Navbar></Navbar>
+    <Buyticket />
       <Footter></Footter>
     </>
   );

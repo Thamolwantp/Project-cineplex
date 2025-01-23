@@ -1,0 +1,135 @@
+/* General Navbar Styles */
+.navbar {
+  display: flex;
+  flex-direction: column; /* แก้เป็น column เพื่อจัดเรียงแนวตั้ง */
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+  width: 100%;
+}
+
+/* Top bar */
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  width: 100%; /* ยืดเต็มความกว้าง */
+}
+
+.brand {
+  font-size: 24px;
+}
+
+.languageSwitch {
+  display: flex;
+  gap: 10px;
+}
+
+.languageSwitch a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.languageSwitch .selected {
+  color: #FFD700;
+}
+
+/* Navigation Links */
+.navLinksContainer {
+  background-color: #fff;
+  width: 100%; /* ยืดเต็มความกว้าง */
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+.navLink.active {
+  color: #FFD700;
+  border-bottom: 2px solid #FFD700;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: center; /* ให้เนื้อหาทั้งหมดอยู่กลางในแนวนอน */
+  align-items: center; /* จัดให้ทุกอย่างอยู่กลางในแนวตั้ง */
+  flex-direction: row; /* ให้อยู่ในแถวเดียว */
+  width: 100%;
+  padding: 20px; /* ปรับ padding ให้น้อยลง */
+  background-color: #D6BB56;
+  height: 15vh; /* ให้ความสูงอยู่ประมาณ 80% ของหน้าจอ */
+}
+
+.heroTitle {
+  font-size: 36px;
+  color: black;
+  margin-right: 10px; /* ลดระยะห่างระหว่าง "BUY TICKET" กับเส้นแนวตั้ง */
+}
+
+.verticalLine {
+  width: 2px;
+  height: 60px;
+  background-color: #000;
+  margin: 0 10px; /* ลดระยะห่างจากทั้งสองฝั่ง */
+}
+
+.ticketSection {
+  display: flex; /* จัดทุกอย่างในแถวเดียว */
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* ลดระยะห่างระหว่าง input, span และ button */
+  background-color: #D6BB56;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.input {
+  padding: 5px;
+  font-size: 14px;
+  color: black;
+  background-color: #fff;
+  width: 130px; /* ลดความกว้างของ input */
+}
+
+.atText {
+  font-size: 24px;
+  color: #000;
+}
+
+.button {
+  background: linear-gradient(to bottom, #ff0000, #510C0C);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 14px;
+  width: 140px; /* ปรับขนาดของปุ่ม */
+  transition: background 0.3s ease;
+}
+
+.button.hovered {
+  background: linear-gradient(to bottom, #b30000, #510C0C);
+}
+
+/* Hero Image */
+.heroImage {
+  width: 100%; /* ปรับให้ยืดเต็มหน้าจอ */
+  height: auto;
+  max-height: 500px;
+  margin-top: 0;
+}
