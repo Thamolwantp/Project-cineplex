@@ -15,9 +15,9 @@ import Register from "@/app/(website)/register/page"
 export default function Home() {
   return (
     <>
-   <Navbar></Navbar>
+    
     <Buyticket />
-     <Footter></Footter>
+    
     </>
   );
 }
