@@ -21,10 +21,9 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #333; /* เปลี่ยนพื้นหลังของ container เป็นสีดำอ่อน */
+  background-color: #333;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-
 
 .header {
   text-align: center;
@@ -64,19 +63,22 @@ body {
   margin: 5px 0;
 }
 
-.dateTimeSection, .timeSlotsSection {
+.dateTimeSection,
+.timeSlotsSection {
   margin-bottom: 20px;
   background-color: transparent;
   padding: 0;
   border-radius: 0;
 }
 
-.dateButtons, .timeButtons {
+.dateButtons,
+.timeButtons {
   display: flex;
   justify-content: left;
 }
 
-.dateButton1, .timeButton1 {
+.dateButton1,
+.timeButton1 {
   margin-right: 10px;
   height: 60px;
   width: 70px;
@@ -86,21 +88,23 @@ body {
   cursor: pointer;
 }
 
-.dateButton1:hover, .timeButton1:hover {
+.dateButton1:hover,
+.timeButton1:hover {
   background: #FFD700;
   color: #ffffff;
 }
 
-.dateButton1.selected, .timeButton1.selected {
+.dateButton1.selected,
+.timeButton1.selected {
   background-color: #FFD700;
   color: white;
 }
 
 .dateButton2 {
-  margin: 0 20px; /* ช่องว่างของปุ่ม */
+  margin: 0 20px;
   height: 60px;
-  width: 2px; /* ขนาดของขีดตรง */
-  background-color: #fff; /* สีขีดตรง */
+  width: 2px;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,11 +112,7 @@ body {
 
 .confirmSection {
   text-align: center;
-  position: fixed;  /* ทำให้ปุ่ม Confirm อยู่คงที่ */
-  bottom: 20px; /* กำหนดตำแหน่งห่างจากด้านล่าง */
-  left: 50%; /* ตั้งค่าให้อยู่กลางหน้าจอ */
-  transform: translateX(-50%); /* เพื่อให้ปุ่มอยู่ตรงกลางแนวขวาง */
-  width: 200px;
+  margin-top: 20px; /* ระยะห่างจากส่วนบน */
 }
 
 .confirmButton {
@@ -126,12 +126,6 @@ body {
   color: #000;
   font-weight: bold;
   text-align: center;
-  
-  /* ใช้ fixed เพื่อให้ปุ่มอยู่กับที่ */
-  position: fixed;
-  bottom: 20px; /* ระยะห่างจากด้านล่าง */
-  left: 50%; /* จัดให้อยู่กลางหน้าจอ */
-  transform: translateX(-50%); /* ปรับให้อยู่ตรงกลางแนวนอน */
 }
 
 .confirmButton:hover {
