@@ -1,8 +1,16 @@
+"use client"; // เพิ่มคำสั่งนี้ที่ด้านบนสุดของไฟล์
+
 import Head from 'next/head';
 import './login.css';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
+  const router = useRouter();
+
+  const handleRedirect = (path: string) => {
+    router.push(path); // ใช้ router.push เพื่อเปลี่ยนหน้า
+  };
+
   return (
     <>
       <Head>
@@ -12,7 +20,7 @@ export default function Page() {
       <div className="container">
         <div className="loginBox">
           <div className="logo">
-            <h1></h1>
+            <h1>MyApp</h1>
           </div>
           <h2>Login</h2>
           <form>
@@ -24,16 +32,24 @@ export default function Page() {
               <label>Password</label>
               <input type="password" placeholder="Enter your password" />
             </div>
-            <button type="submit" className="submitButton">
+            {/* ใช้ handleRedirect เพื่อเปลี่ยนหน้า */}
+            <button
+              className="submitButton"
+              type="button"
+              onClick={() => handleRedirect('/moviepage')}
+            >
               Submit
             </button>
           </form>
           <p>Not a member yet? Register now to get started!</p>
-          <Link href="/register">
-            <button className="registerButton">
-              Register
-            </button>
-          </Link>
+          {/* ใช้ handleRedirect เพื่อเปลี่ยนหน้า */}
+          <button
+            className="registerButton"
+            type="button"
+            onClick={() => handleRedirect('/register')}
+          >
+            Register
+          </button>
         </div>
       </div>
     </>

@@ -160,7 +160,7 @@ const Navbar: React.FC = () => {
       <div style={styles.imageSection}>
         <div style={styles.imageTextWrapper}>
           <img
-            src="https://i.imgur.com/0tHA1Pe.png"
+            src="https://i.imgur.com/WBQ4BUQ_d.png?maxwidth=520&shape=thumb&fidelity=high"
             alt="Cineplex"
             style={styles.image}
           />

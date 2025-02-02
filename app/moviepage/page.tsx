@@ -1,7 +1,10 @@
 "use client";
 
-import React from "react";
-import MovieCard from "./Mcard/MovieCard";
+import React, { useEffect } from "react";
+import MovieCard from "../Movie/Mcard/MovieCard";
+import "./moviepage.css";
+import Navbar from "@/components/Navbar"; // Import Navbar
+import Footter from "@/components/Footter"; // Import Navbar
 
 const MoviePage: React.FC = () => {
   const categories = [
@@ -94,59 +97,39 @@ const MoviePage: React.FC = () => {
     },
   ];
 
+  useEffect(() => {
+    const isMoviePage = sessionStorage.getItem("isMoviePage");
+
+    // ถ้าเราอยู่ใน moviepage
+    if (isMoviePage === "true") {
+      // ถ้าเข้าเป็นครั้งแรก จะทำการตั้งค่า session ใหม่ให้เป็น false
+      sessionStorage.setItem("isMoviePage", "false");
+    } else {
+      // หากไม่ใช่หน้าที่เพิ่งเข้ามา ให้รีเฟรชหน้า
+      sessionStorage.setItem("isMoviePage", "true");
+      window.location.reload(); // รีเฟรชหน้าทุกครั้งที่เปลี่ยนหน้า
+    }
+  }, []);
+
   return (
-    <div style={styles.page}>
+    <div className="page">
+       <Navbar />
       {categories.map((category, index) => (
         <div key={index}>
-          <header style={styles.header}>
-            <h2 style={styles.categoryTitle}>{category.title}</h2>
-            <div style={styles.borderLine}></div>
+          <header className="header">
+            <h2 className="categoryTitle">{category.title}</h2>
+            <div className="borderLine"></div>
           </header>
-          <div style={styles.movieList}>
+          <div className="movieList">
             {category.movies.map((movie) => (
               <MovieCard key={movie.id} movie={movie} />
             ))}
           </div>
         </div>
       ))}
+       <Footter />
     </div>
   );
-};
-
-const styles = {
-  page: {
-    background: "linear-gradient(to bottom, #7b0000, #1a1a1a)",
-    color: "white",
-    padding: "20px",
-    fontFamily: "'Arial', sans-serif",
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-  },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    marginBottom: "10px",
-  },
-  categoryTitle: {
-    fontSize: "1.8rem",
-    color: "white",
-    margin: "0",
-    paddingRight: "10px",
-  },
-  borderLine: {
-    flex: 1,
-    borderBottom: "2px solid #D6BB56",
-  },
-  movieList: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "nowrap",
-    gap: "20px",
-    justifyContent: "flex-start",
-    overflowX: "auto",
-    paddingBottom: "20px",
-  },
 };
 
 export default MoviePage;

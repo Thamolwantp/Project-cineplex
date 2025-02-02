@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { useRouter } from "next/navigation";
 
 interface Movie {
   id: number;
@@ -14,8 +17,10 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = "https://via.placeholder.com/200x300?text=No+Image";
+  const router = useRouter(); // ใช้ useRouter สำหรับการนำทาง
+
+  const handleRedirect = () => {
+    router.push(`/buyticket?id=${movie.id}`);
   };
 
   return (
@@ -24,13 +29,22 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         src={movie.posterUrl}
         alt={`โปสเตอร์ของ ${movie.title}`}
         style={styles.moviePoster}
-        onError={handleImageError}
       />
       <div style={styles.movieInfo}>
         <p style={styles.releaseDate}>{movie.releaseDate}</p>
         <h3 style={styles.movieTitle}>{movie.title}</h3>
         <p style={styles.movieType}>{movie.type}</p>
         <p style={styles.movieDuration}>{movie.duration}</p>
+
+        {/* ปุ่มสำหรับไปที่หน้า buyticket */}
+        <button
+          className="registerButton"
+          type="button"
+          onClick={handleRedirect} 
+          style={styles.button}
+        >
+          ซื้อตั๋ว
+        </button>
       </div>
     </div>
   );
@@ -43,6 +57,7 @@ const styles = {
     overflow: "hidden",
     width: "200px",
     margin: "10px",
+    textAlign: "center",
   },
   moviePoster: {
     width: "100%",
@@ -51,32 +66,18 @@ const styles = {
   },
   movieInfo: {
     padding: "10px",
-    display: "flex",  // ใช้ flexbox
-    flexDirection: "column",  // จัดข้อมูลในแนวตั้ง
-    justifyContent: "flex-start",  // จัดให้อยู่ทางซ้าย
-    alignItems: "flex-start",  // จัดให้อยู่ทางซ้าย
-    textAlign: "left",  // ข้อความทั้งหมดจะจัดให้อยู่ทางซ้าย
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
-  releaseDate: {
-    margin: "0",
-    fontSize: "0.9rem",
-    color: "#ccc",
-  },
-  movieTitle: {
-    fontSize: "1.2rem",
-    fontWeight: "bold",
-    margin: "5px 0",
-    color: "white",
-  },
-  movieType: {
-    margin: "5px 0",
-    fontSize: "0.9rem",
-    color: "#ccc",
-  },
-  movieDuration: {
-    margin: "5px 0",
-    fontSize: "0.9rem",
-    color: "#ccc",
+  button: {
+    marginTop: "10px",
+    padding: "8px 12px",
+    backgroundColor: "#D6BB56",
+    color: "black",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
   },
 };
 

@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #000;
+    color: #FFD700;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #111;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .secondheader {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+    justify-content: left;
+  }
+  .header1{
+    margin-right: 880px;
+  }
+  .header2 {
+    height: 40px;
+    width: 150px;
+    color: #ffffff;
+    background-color: #D6BB56;
+    border: 1.5px solid #222;
+    margin: auto; 
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+  }
+  
+  .mainContent {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .posterSection {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .posterPlaceholder {
+    width: 150px;
+    height: 200px;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFD700;
+    margin-left: 400px;
+  }
+  
+  .detailsSection {
+    flex: 2;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50px;
+  }
+  
+  .detailsSection h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .detailsSection p {
+    margin: 5px 0;
+  }
+  
+  .price {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    height: 30px;
+    width: 100%; 
+    gap: 8px; 
+    background: #947500;
+    color: #000000;
+    margin-bottom: 20px;
+  }
+  
+  .price h3,
+  .price p {
+    margin: 0; 
+  }
+  .commit {
+    max-width: 400px; /* กำหนดความกว้างสูงสุดของฟอร์ม */
+  }
+  
+  .commit h3 {
+    margin-bottom: 20px; /* ระยะห่างระหว่างหัวข้อและฟอร์ม */
+    text-align: start; /* จัดข้อความให้อยู่ตรงกลาง */
+    font-size: 20px; /* ขนาดตัวอักษรใหญ่ขึ้น */
+    color: #ffffff;
+  }
+  
+  .inputGroup {
+    display: flex; /* ใช้ Flexbox */
+    align-items: center; /* จัดกึ่งกลางในแนวตั้ง */
+    margin-bottom: 15px; /* ระยะห่างระหว่างกลุ่ม */
+    margin-left: 50px;
+  }
+  
+  .inputGroup label {
+    color: #ffffff;
+    margin-bottom: 5px; /* เว้นระยะห่างระหว่าง label และ input */
+    font-weight: bold; /* ตัวอักษรหนาขึ้น */
+    margin-right: 10px;
+  }
+  
+  .inputGroup input {
+    width: 100%; /* ขยายความกว้างเต็มที่ */
+    padding: 3px; /* ระยะห่างภายใน */
+    border: 1px solid #ccc; /* เส้นขอบ input */
+    font-size: 1rem; /* ขนาดตัวอักษร */
+  }
+  
+  .submitButton {
+    width: 90%; /* ขยายปุ่มเต็มความกว้าง */
+    padding: 10px;
+    background-color: #D6BB56; /* สีเขียว */
+    color: white; /* สีตัวอักษรขาว */
+    border: none; /* ไม่มีขอบ */
+    border-radius: 4px; /* มุมโค้งมน */
+    font-size: 1rem;
+    cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
+    transition: background-color 0.3s ease; /* เพิ่มเอฟเฟกต์เปลี่ยนสี */
+    margin-left: 50px;
+  }
+  
+  .submitButton:hover {
+    background-color: #947500; /* เปลี่ยนสีเมื่อ hover */
+  }

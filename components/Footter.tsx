@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
     <div className="footer">
       {/* Footer Logo */}
       <img
-        src="https://i.imgur.com/Vfm7Jyr.png"
+        src="https://i.imgur.com/lgFPDON_d.png?maxwidth=520&shape=thumb&fidelity=high"
         alt="Vestra Cineplex"
         className="footerLogo"
       />

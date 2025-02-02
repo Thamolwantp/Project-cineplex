@@ -1,7 +1,7 @@
 "use client"; // บอก Next.js ว่าไฟล์นี้เป็น Client Component
 
 import React, { useState } from "react";
-import MovieCardNow from "../Mcard/MovieCardNow";
+import MovieCardNow from "../Movie/Mcard/MovieCardNow";
 
 interface Movie {
   id: number;

@@ -90,7 +90,7 @@ const Navbar: React.FC = () => {
 
       {/* Hero Image */}
       <img
-        src="https://i.imgur.com/0tHA1Pe.png"
+        src="https://i.imgur.com/WBQ4BUQ_d.png?maxwidth=520&shape=thumb&fidelity=high"
         alt="Cineplex"
         className="heroImage"
       />
