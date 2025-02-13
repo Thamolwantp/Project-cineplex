@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model addmoive {
+  addmoive_id Int         @id @default(autoincrement())
+  tag         String?
+  title       String?
+  category    String?
+  time        Int?
+  language    String?
+  cinema      String?
+  fdate       DateTime?   @db.Timestamp(6)
+  actor       String?
+  director    String?
+  resume      String?
+  image_url   String?
+  ldate       DateTime?   @db.Timestamp(6)
+  timer1      DateTime?   @db.Time(6)
+  timer2      DateTime?   @db.Time(6)
+  timer3      DateTime?   @db.Time(6)
+  showtimes   showtimes[]
+}
+
+model cinemas {
+  cinema_id   Int     @id @default(autoincrement())
+  name_cinema String  @db.VarChar(100)
+  location    String? @db.VarChar(255)
+}
+
+model seat_reservations {
+  reservation_id Int          @id @default(autoincrement())
+  showtime_id    Int
+  seat_id        Int
+  status         seat_status? @default(Available)
+  reserved_by    String?      @db.VarChar(255)
+  reserved_at    DateTime?    @default(now()) @db.Timestamp(6)
+  seats          seats        @relation(fields: [seat_id], references: [seat_id], onDelete: NoAction, onUpdate: NoAction)
+  showtimes      showtimes    @relation(fields: [showtime_id], references: [showtime_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model seats {
+  seat_id           Int                 @id @default(autoincrement())
+  cinema_id         Int
+  seat_number       Int
+  price             Int?
+  seat_reservations seat_reservations[]
+}
+
+model showtimes {
+  showtime_id       Int                 @id @default(autoincrement())
+  cinema_id         Int
+  addmoive_id       Int
+  start_time        DateTime?           @db.Timestamp(6)
+  end_time          DateTime?           @db.Timestamp(6)
+  seat_reservations seat_reservations[]
+  addmoive          addmoive            @relation(fields: [addmoive_id], references: [addmoive_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model username {
+  id       Int     @id @default(autoincrement())
+  user     String?
+  email    String?
+  password String?
+}
+
+enum seat_status {
+  Available
+  Reserved
+  Occupied
+}
