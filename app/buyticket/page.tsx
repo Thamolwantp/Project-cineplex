@@ -56,19 +56,23 @@ export default function Page() {
       <StepProgressBar />
 
       <div className="header">
-        <h1>Buy Ticket</h1>
+        {/* ส่วนหัวของหน้า */}
       </div>
 
       {/* Movie Poster Section */}
       <div className="posterSection">
         <div className="posterPlaceholder">
-          <p>Movie Poster Here</p>
+        <img
+            src="https://storage-wp.thaipost.net/2024/02/S__25862218_0.jpg"
+            alt="Movie Poster"
+            className="posterImage"
+          />
         </div>
         <div className="detailsSection">
           <h2>Movie Title</h2>
-          <p>Director: Name Here</p>
-          <p>Genre: Add Genre</p>
-          <p>Duration: 110 mins</p>
+          <p>Director: หลานม่า</p>
+          <p>Genre: Drama</p>
+          <p>Duration: 120 mins</p>
         </div>
       </div>
 

@@ -158,16 +158,10 @@ const Navbar: React.FC = () => {
 
       {/* รูปภาพแยกออกจาก hero */}
       <div style={styles.imageSection}>
-        <div style={styles.imageTextWrapper}>
-          <img
-            src="https://i.imgur.com/WBQ4BUQ_d.png?maxwidth=520&shape=thumb&fidelity=high"
-            alt="Cineplex"
-            style={styles.image}
-          />
-          <div style={styles.textOverlay}>VESTRA CINEPLEX</div>
+        
         </div>
       </div>
-    </div>
+    
   );
 };
 

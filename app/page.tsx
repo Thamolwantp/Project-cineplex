@@ -20,7 +20,6 @@ export default function Page() {
       <div className="container">
         <div className="loginBox">
           <div className="logo">
-            <h1>MyApp</h1>
           </div>
           <h2>Login</h2>
           <form>

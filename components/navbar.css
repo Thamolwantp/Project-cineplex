@@ -1,11 +1,14 @@
 /* General Navbar Styles */
 .navbar {
   display: flex;
-  flex-direction: column; /* แก้เป็น column เพื่อจัดเรียงแนวตั้ง */
+  flex-direction: column;
   align-items: center;
   background-color: #000;
   color: #fff;
-  width: 100%;
+  width: 100%; /* Stretch to full width */
+  padding: 0;
+  position: relative; /* Remove fixed position */
+  
 }
 
 /* Top bar */
@@ -14,7 +17,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  width: 100%; /* ยืดเต็มความกว้าง */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .brand {
@@ -38,10 +42,12 @@
 /* Navigation Links */
 .navLinksContainer {
   background-color: #fff;
-  width: 100%; /* ยืดเต็มความกว้าง */
+  width: 100%;
   display: flex;
   justify-content: center;
   padding: 20px 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .navLinks {
@@ -66,33 +72,33 @@
 /* Hero Section */
 .hero {
   display: flex;
-  justify-content: center; /* ให้เนื้อหาทั้งหมดอยู่กลางในแนวนอน */
-  align-items: center; /* จัดให้ทุกอย่างอยู่กลางในแนวตั้ง */
-  flex-direction: row; /* ให้อยู่ในแถวเดียว */
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
   width: 100%;
-  padding: 20px; /* ปรับ padding ให้น้อยลง */
+  padding: 20px;
   background-color: #D6BB56;
-  height: 15vh; /* ให้ความสูงอยู่ประมาณ 80% ของหน้าจอ */
+  height: 15vh;
 }
 
 .heroTitle {
   font-size: 36px;
   color: black;
-  margin-right: 10px; /* ลดระยะห่างระหว่าง "BUY TICKET" กับเส้นแนวตั้ง */
+  margin-right: 10px;
 }
 
 .verticalLine {
   width: 2px;
   height: 60px;
   background-color: #000;
-  margin: 0 10px; /* ลดระยะห่างจากทั้งสองฝั่ง */
+  margin: 0 10px;
 }
 
 .ticketSection {
-  display: flex; /* จัดทุกอย่างในแถวเดียว */
+  display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px; /* ลดระยะห่างระหว่าง input, span และ button */
+  gap: 10px;
   background-color: #D6BB56;
   padding: 5px;
   border-radius: 5px;
@@ -103,7 +109,7 @@
   font-size: 14px;
   color: black;
   background-color: #fff;
-  width: 130px; /* ลดความกว้างของ input */
+  width: 130px;
 }
 
 .atText {
@@ -118,7 +124,7 @@
   cursor: pointer;
   padding: 5px 10px;
   font-size: 14px;
-  width: 140px; /* ปรับขนาดของปุ่ม */
+  width: 140px;
   transition: background 0.3s ease;
 }
 
@@ -128,7 +134,7 @@
 
 /* Hero Image */
 .heroImage {
-  width: 100%; /* ปรับให้ยืดเต็มหน้าจอ */
+  width: 100%;
   height: auto;
   max-height: 500px;
   margin-top: 0;
