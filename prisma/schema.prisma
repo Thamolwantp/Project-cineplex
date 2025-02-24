@@ -1,69 +1,69 @@
 generator client {
   provider = "prisma-client-js"
-  }
+}
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model addmoive {
-  addmoive_id Int         @id @default(autoincrement())
+model cinema {
+  cinema_id   Int     @id(map: "cinemas_pkey") @default(autoincrement())
+  name_cinema String  @db.VarChar(100)
+  location    String? @db.VarChar(255)
+}
+
+model movie {
+  addmoive_id Int        @id(map: "addmoive_pkey") @default(autoincrement())
   tag         String?
   title       String?
   category    String?
   time        Int?
   language    String?
   cinema      String?
-  fdate       DateTime?   @db.Timestamp(6)
+  fdate       DateTime?  @db.Timestamp(6)
   actor       String?
   director    String?
   resume      String?
   image_url   String?
-  ldate       DateTime?   @db.Timestamp(6)
-  timer1      DateTime?   @db.Time(6)
-  timer2      DateTime?   @db.Time(6)
-  timer3      DateTime?   @db.Time(6)
-  showtimes   showtimes[]
+  ldate       DateTime?  @db.Timestamp(6)
+  timer1      DateTime?  @db.Time(6)
+  timer2      DateTime?  @db.Time(6)
+  timer3      DateTime?  @db.Time(6)
+  showtime    showtime[]
 }
 
-model cinemas {
-  cinema_id   Int     @id @default(autoincrement())
-  name_cinema String  @db.VarChar(100)
-  location    String? @db.VarChar(255)
+model seat {
+  seat_id          Int                @id(map: "seats_pkey") @default(autoincrement())
+  cinema_id        Int
+  seat_number      Int
+  price            Int?
+  seat_reservation seat_reservation[]
 }
 
-model seat_reservations {
-  reservation_id Int          @id @default(autoincrement())
+model seat_reservation {
+  reservation_id Int          @id(map: "seat_reservations_pkey") @default(autoincrement())
   showtime_id    Int
   seat_id        Int
   status         seat_status? @default(Available)
   reserved_by    String?      @db.VarChar(255)
   reserved_at    DateTime?    @default(now()) @db.Timestamp(6)
-  seats          seats        @relation(fields: [seat_id], references: [seat_id], onDelete: NoAction, onUpdate: NoAction)
-  showtimes      showtimes    @relation(fields: [showtime_id], references: [showtime_id], onDelete: NoAction, onUpdate: NoAction)
+  seat           seat         @relation(fields: [seat_id], references: [seat_id], onDelete: NoAction, onUpdate: NoAction, map: "seat_reservations_seat_id_fkey")
+  showtime       showtime     @relation(fields: [showtime_id], references: [showtime_id], onDelete: NoAction, onUpdate: NoAction, map: "seat_reservations_showtime_id_fkey")
 }
 
-model seats {
-  seat_id           Int                 @id @default(autoincrement())
-  cinema_id         Int
-  seat_number       Int
-  price             Int?
-  seat_reservations seat_reservations[]
+model showtime {
+  showtime_id      Int                @id(map: "showtimes_pkey") @default(autoincrement())
+  cinema_id        Int
+  addmoive_id      Int
+  start_time       DateTime?          @db.Timestamp(6)
+  end_time         DateTime?          @db.Timestamp(6)
+  seat_reservation seat_reservation[]
+  movie            movie              @relation(fields: [addmoive_id], references: [addmoive_id], onDelete: NoAction, onUpdate: NoAction, map: "showtimes_addmoive_id_fkey")
 }
 
-model showtimes {
-  showtime_id       Int                 @id @default(autoincrement())
-  cinema_id         Int
-  addmoive_id       Int
-  start_time        DateTime?           @db.Timestamp(6)
-  end_time          DateTime?           @db.Timestamp(6)
-  seat_reservations seat_reservations[]
-  addmoive          addmoive            @relation(fields: [addmoive_id], references: [addmoive_id], onDelete: NoAction, onUpdate: NoAction)
-}
-
-model username {
-  id       Int     @id @default(autoincrement())
+model user {
+  id       Int     @id(map: "username_pkey") @default(autoincrement())
   user     String?
   email    String?
   password String?
