@@ -39,6 +39,7 @@ model seat {
   seat_number      Int
   price            Int?
   seat_reservation seat_reservation[]
+  tickets          ticket[]
 }
 
 model seat_reservation {
@@ -60,6 +61,7 @@ model showtime {
   end_time         DateTime?          @db.Timestamp(6)
   seat_reservation seat_reservation[]
   movie            movie              @relation(fields: [addmoive_id], references: [addmoive_id], onDelete: NoAction, onUpdate: NoAction, map: "showtimes_addmoive_id_fkey")
+  tickets          ticket[]
 }
 
 model user {
@@ -67,6 +69,19 @@ model user {
   user     String?
   email    String?
   password String?
+  tickets  ticket[]
+}
+
+model ticket {
+  ticket_id     Int          @id @default(autoincrement())  // รหัสตั๋ว (Primary Key)
+  user_id       Int          // รหัสผู้ซื้อ (เชื่อมกับตาราง user)
+  showtime_id   Int          // เชื่อมกับตาราง showtime (รอบฉาย)
+  seat_id       Int          // เชื่อมกับตาราง seat (ที่นั่ง)
+  price         Float        // ราคาตั๋ว
+  purchase_at   DateTime     @default(now())  // วันที่และเวลาที่ซื้อตั๋ว
+  user          user         @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  showtime      showtime     @relation(fields: [showtime_id], references: [showtime_id], onDelete: Cascade)
+  seat          seat         @relation(fields: [seat_id], references: [seat_id], onDelete: Cascade)
 }
 
 enum seat_status {
