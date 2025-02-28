@@ -14,7 +14,7 @@ export default function Page() {
   return (
     <>
       <Head>
-        <title>Login Page0</title>
+        <title>Login Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <div className="container">
