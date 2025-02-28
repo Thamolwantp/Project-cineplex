@@ -3,9 +3,10 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function GET(req, { params }) {
+export async function GET(req, context) {
   try {
-    const { id } = params;
+    // ใช้ await เพื่อดึง params
+    const { id } = await context.params;
     const userId = Number(id);
 
     if (!userId || isNaN(userId)) {
@@ -17,11 +18,12 @@ export async function GET(req, { params }) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
+    // ใช้ groupBy เพื่อจัดกลุ่มตามวันที่และนับจำนวนตั๋วที่ซื้อ
     const stats = await prisma.ticket.groupBy({
-      by: ['purchase_at', 'user_id'],  
+      by: ['purchase_at', 'user_id'],  // Group ตามวันที่
       where: { user_id: userId },
-      _count: { ticket_id: true },
-      orderBy: { purchase_at: 'asc' },
+      _count: { ticket_id: true },  // นับจำนวนตั๋ว
+      orderBy: { purchase_at: 'asc' },  // เรียงตามวันที่
     });
 
     return NextResponse.json(stats, { status: 200 });
