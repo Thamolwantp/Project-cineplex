@@ -8,8 +8,7 @@ export async function GET(req, { params }) {
 
   try {
     const movie = await prisma.movie.findUnique({
-      where: { addmoive_id: Number(id) },  // ต้องแปลงเป็นตัวเลข
-    });
+      where: { addmoive_id: Number(id) },  
 
     if (!movie) {
       return NextResponse.json({ error: 'Movie not found' }, { status: 404 });

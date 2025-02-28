@@ -20,12 +20,11 @@ export async function POST(req) {
       timer1, timer2, timer3 
     } = await req.json();
 
-    // ตรวจสอบว่ามีข้อมูลที่จำเป็นครบหรือไม่
+
     if (!title || !category || !language) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    // เพิ่มหนังใหม่ลงในฐานข้อมูล
     const newMovie = await prisma.movie.create({
       data: {
         tag,
@@ -60,9 +59,8 @@ export async function DELETE(req) {
       return NextResponse.json({ error: 'Movie ID is required' }, { status: 400 });
     }
 
-    // ลบหนังที่มี id ตรงกับที่ระบุ
     const deletedMovie = await prisma.movie.delete({
-      where: { addmoive_id: Number(id) }, // ใช้ addmoive_id เป็น key
+      where: { addmoive_id: Number(id) }, 
     });
 
     return NextResponse.json(deletedMovie, { status: 200 });

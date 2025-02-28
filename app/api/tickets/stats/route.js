@@ -7,7 +7,7 @@ export async function GET() {
   try {
     const stats = await prisma.ticket.groupBy({
       by: ['purchase_at'],
-      _count: { ticket_id: true },  // นับจำนวนตั๋วที่ขาย
+      _count: { ticket_id: true },  
       orderBy: { purchase_at: 'asc' },
     });
 

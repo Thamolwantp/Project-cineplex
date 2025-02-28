@@ -8,7 +8,7 @@ export async function GET(req, { params }) {
 
   try {
     const user = await prisma.user.findUnique({
-      where: { id: Number(id) }, // ค้นหาตาม id
+      where: { id: Number(id) }, 
     });
 
     if (!user) {
@@ -22,9 +22,9 @@ export async function GET(req, { params }) {
 }
 export async function DELETE(req, { params }) {
     try {
-      const { id } = params; // รับ ID จาก URL
+      const { id } = params; 
   
-      // ตรวจสอบว่ามี user นี้ในระบบหรือไม่
+
       const existingUser = await prisma.user.findUnique({
         where: { id: parseInt(id) },
       });
@@ -32,8 +32,7 @@ export async function DELETE(req, { params }) {
       if (!existingUser) {
         return NextResponse.json({ error: "User not found" }, { status: 404 });
       }
-  
-      // ลบผู้ใช้
+
       await prisma.user.delete({
         where: { id: parseInt(id) },
       });
