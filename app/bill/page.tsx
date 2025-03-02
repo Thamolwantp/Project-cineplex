@@ -99,7 +99,7 @@ export default function Page() {
             </button>
           </form>
         </div>
-
+        <br /><br /><br />
         {isSubmitted && !isPaymentCompleted && (
           <div className="confirmation">
             <img src="/QR.png" alt="QR Code" />
@@ -108,7 +108,7 @@ export default function Page() {
             </button>
           </div>
         )}
-
+        
         {isPaymentCompleted && (
           <div className="paymentCompleted">
             <p>ชำระเงินเสร็จแล้ว</p>

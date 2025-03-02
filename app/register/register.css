@@ -1,85 +1,85 @@
-
 /* ตั้งค่าขนาดเต็มสำหรับ html และ body */
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%; /* ครอบคลุมความสูง 100% ของหน้าจอ */
-    width: 100%;  /* ครอบคลุมความกว้าง 100% ของหน้าจอ */
-    display: flex;
-    justify-content: center;
-    align-items: center; /* จัดวางให้อยู่กลางจอทั้งแนวตั้งและแนวนอน */
-    background: linear-gradient(135deg, #000000, #444444); /* เพิ่มพื้นหลังแบบไล่สี */
-    box-sizing: border-box;
-}
-  
-/* ครอบคลุมพื้นที่ container */
-.container {
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* ใช้ความสูง 100% */
-    width: 100%;  /* ใช้ความกว้าง 100% */
-}
+    background: linear-gradient(135deg, #000000, #444444);
+    box-sizing: border-box;
+  }
+  
+  /* ครอบคลุมพื้นที่ container */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
   
   /* กล่องล็อกอิน */
-.loginBox {
-    background: rgba(0, 0, 0, 0.8); /* พื้นหลังโปร่งใสเล็กน้อย */
+  .loginBox {
+    background: rgba(0, 0, 0, 0.8);
     padding: 2rem;
-    border-radius: 10px; /* มุมกล่องโค้งมน */
-    box-shadow: 0 0 20px rgba(255, 165, 0, 0.7); /* เงา */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.7);
     text-align: center;
-    width: 600px; /* ความกว้างของกล่อง */
-    border: 2px solid #ffa500; /* เส้นขอบ */
-}
+    width: 600px;
+    border: 2px solid #ffa500;
+  }
   
   /* โลโก้ */
-.logo h1 {
+  .logo h1 {
     font-family: 'Cursive', sans-serif;
     color: #ffa500;
     margin-bottom: 1rem;
-}
+  }
   
   /* ชื่อหัวข้อ */
-h2 {
+  h2 {
     font-size: 20px;
     color: #c5a100;
     margin-bottom: 1.5rem;
-}
+  }
   
   /* ส่วน input */
-.inputGroup {
+  .inputGroup {
     margin-bottom: 1.5rem;
     text-align: left;
-}
+  }
   
-.inputGroup label {
+  .inputGroup label {
     display: block;
     color: #ffffff;
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
-}
+  }
   
-.inputGroup input {
+  .inputGroup input {
     width: 100%;
     padding: 0.5rem;
     border: none;
     border-radius: 5px;
-}
+  }
   
   /* ปุ่ม Submit */
-.submitButton {
+  .submitButton {
     background: #ffa500;
     color: #000000;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
+  }
   
-.submitButton:hover {
+  .submitButton:hover {
     background: #d9e900;
-}
-.sent {
+  }
+  
+  .sent {
     background: #00eeff;
     color: #ffffff;
     padding: 0.5rem 1rem;
@@ -87,7 +87,9 @@ h2 {
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 10px;
-}
-.sent:hover {
+  }
+  
+  .sent:hover {
     background: #006eff;
-}
+  }
+  
