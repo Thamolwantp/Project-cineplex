@@ -17,13 +17,29 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+  const router = useRouter();
+
+  const handleRedirect = () => {
+    router.push(`/buyticket?id=${movie.id}`);
+  };
+
   return (
-    <div className="movie-card">
-      <img src={movie.posterUrl} alt={movie.title} />
-      <h3>{movie.title}</h3>
-      <p>ประเภท: {movie.type}</p>
-      <p>ความยาว: {movie.duration}</p>
-      <p>ฉายวันแรก: {movie.releaseDate}</p>
+    <div style={styles.movieCard}>
+      <img src={movie.posterUrl} alt={movie.title} style={styles.moviePoster} />
+      <div style={styles.movieInfo}>
+        <h3>{movie.title}</h3>
+        <p>ประเภท: {movie.type}</p>
+        <p>ความยาว: {movie.duration}</p>
+        <p>ฉายวันแรก: {movie.releaseDate}</p>
+        <button
+          className="registerButton"
+          type="button"
+          onClick={handleRedirect}
+          style={styles.button}
+        >
+          ซื้อตั๋ว
+        </button>
+      </div>
     </div>
   );
 };
@@ -35,18 +51,19 @@ const styles = {
     overflow: "hidden",
     width: "200px",
     margin: "10px",
-    textAlign: "center",
+    textAlign: "center" as const,
   },
   moviePoster: {
     width: "100%",
     height: "300px",
-    objectFit: "cover",
+    objectFit: "cover" as const,
   },
   movieInfo: {
     padding: "10px",
     display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    flexDirection: "column" as const,
+    alignItems: "center" as const,
+    color: "#fff",
   },
   button: {
     marginTop: "10px",

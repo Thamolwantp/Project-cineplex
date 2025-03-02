@@ -47,7 +47,7 @@ export default function MovieList() {
 
   return (
     <div className="movie-container">
-        <Navbar />
+      <Navbar />
       <h1>Movie List</h1>
       {loading ? (
         <p>Loading movies...</p>
