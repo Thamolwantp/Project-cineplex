@@ -1,6 +1,7 @@
 "use client"; // ระบุให้เป็น Client Component เพื่อให้รองรับ Event Handlers
 
 import React, { useState } from "react";
+import Link from 'next/link';
 
 const Navbar: React.FC = () => {
   const [hover, setHover] = useState<string | null>(null); // ใช้ค่าหลายตัวแทนที่ไม่ใช่ boolean
@@ -26,7 +27,7 @@ const Navbar: React.FC = () => {
       width: "100%",
       display: "flex",
       justifyContent: "center",
-      padding: "10px 0",
+      padding: "20px 0", // เพิ่ม padding เพื่อให้สูงขึ้น
     },
     navLinks: {
       listStyle: "none",
@@ -38,9 +39,10 @@ const Navbar: React.FC = () => {
       color: selectedLink === link || hover === link ? "#FFD700" : "#000", // สีทองเมื่อ selected หรือ hover
       fontSize: "20px",
       fontWeight: "bold",
-      borderBottom: selectedLink === link || hover === link ? "2px solid #FFD700" : "none", // ขีดใต้สีทอง
+      borderBottom: selectedLink === link ? "2px solid #FFD700" : "none", // ขีดใต้สีทองเมื่อเลือก
       position: "relative",
       paddingBottom: "5px",
+      paddingTop: "10px", // เพิ่ม padding ด้านบนเพื่อให้สูงขึ้น
     }),
     hero: {
       display: "flex",
@@ -136,59 +138,59 @@ const Navbar: React.FC = () => {
       <div style={styles.navLinksContainer}>
         <ul style={styles.navLinks}>
           <li>
-            <a
-              href="#"
+            <Link
+              href="/moviepage" // ลิงก์ไปที่หน้า moviepage
               onClick={() => setSelectedLink("home")}
               onMouseEnter={() => setHover("home")}
-              onMouseLeave={() => setHover(null)} // เมื่อเลิกชี้ ให้ reset hover
+              onMouseLeave={() => setHover(null)}
               style={styles.navLink("home")}
             >
               หน้าหลัก
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              href="/movienow" // ลิงก์ไปที่หน้า movienow
               onClick={() => setSelectedLink("movies")}
               onMouseEnter={() => setHover("movies")}
-              onMouseLeave={() => setHover(null)} // เมื่อเลิกชี้ ให้ reset hover
+              onMouseLeave={() => setHover(null)}
               style={styles.navLink("movies")}
             >
               ภาพยนตร์
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               href="#"
               onClick={() => setSelectedLink("cinemas")}
               onMouseEnter={() => setHover("cinemas")}
-              onMouseLeave={() => setHover(null)} // เมื่อเลิกชี้ ให้ reset hover
+              onMouseLeave={() => setHover(null)}
               style={styles.navLink("cinemas")}
             >
               โรงภาพยนตร์
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               href="#"
               onClick={() => setSelectedLink("promotions")}
               onMouseEnter={() => setHover("promotions")}
-              onMouseLeave={() => setHover(null)} // เมื่อเลิกชี้ ให้ reset hover
+              onMouseLeave={() => setHover(null)}
               style={styles.navLink("promotions")}
             >
               โปรโมชั่น
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               href="#"
               onClick={() => setSelectedLink("privacy")}
               onMouseEnter={() => setHover("privacy")}
-              onMouseLeave={() => setHover(null)} // เมื่อเลิกชี้ ให้ reset hover
+              onMouseLeave={() => setHover(null)}
               style={styles.navLink("privacy")}
             >
               นโยบายข้อมูลส่วนบุคคล
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
@@ -205,18 +207,19 @@ const Navbar: React.FC = () => {
 
         {/* ฟอร์ม */}
         <div style={styles.ticketSection}>
-          <select style={styles.input}>
-            <option value="">ค้นหาภาพยนต์</option>
-            <option value="movie1">ภาพยนตร์ 1</option>
-            <option value="movie2">ภาพยนตร์ 2</option>
-            <option value="movie3">ภาพยนตร์ 3</option>
-          </select>
+          <input
+            className="input"
+            type="text"
+            placeholder="ค้นหาภาพยนตร์"
+            value={selectedLink}
+            onChange={(e) => setSelectedLink(e.target.value)}
+          />
           <span style={{ color: "#000", fontSize: "24px" }}>AT</span>
           <select style={styles.input}>
             <option value="">ค้นหาโรงภาพยนต์</option>
-            <option value="cinema1">โรง 1</option>
-            <option value="cinema2">โรง 2</option>
-            <option value="cinema3">โรง 3</option>
+            <option value="cinema1">Vestra Cineplex</option>
+            <option value="cinema2">Vestra Cineplex</option>
+            <option value="cinema3">Vestra Cineplex</option>
           </select>
           <button
             type="button"

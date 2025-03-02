@@ -8,7 +8,6 @@
   width: 100%; /* Stretch to full width */
   padding: 0;
   position: relative; /* Remove fixed position */
-  
 }
 
 /* Top bar */
@@ -109,7 +108,7 @@
   font-size: 14px;
   color: black;
   background-color: #fff;
-  width: 130px;
+  width: 200px;  /* Increased width for input field */
 }
 
 .atText {

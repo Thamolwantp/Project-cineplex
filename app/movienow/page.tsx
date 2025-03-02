@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import MovieCardNow from "../Movie/Mcard/MovieCardNow";
+import Navbar from "@/components/NavbarMN";
 
 interface Movie {
   id: number;
@@ -58,6 +59,7 @@ const MovieNow: React.FC = () => {
 
   return (
     <div style={styles.page}>
+      <Navbar />
       <div style={styles.tabs}>
         <button
           style={activeTab === "nowShowing" ? styles.activeTab : styles.tab}
@@ -87,17 +89,19 @@ const styles = {
   page: {
     background: "linear-gradient(to bottom, #7b0000, #1a1a1a)", // พื้นหลังแบบ Gradient
     color: "white", // สีข้อความ
-    padding: "20px",
+    padding: "0", // ลบการ padding ออก
     fontFamily: "'Arial', sans-serif", // ฟอนต์
-    minHeight: "100vh", // ความสูงของหน้าจอ
+    height: "100vh", // ใช้ความสูงเต็มหน้าจอ
     display: "flex",
     flexDirection: "column",
+    overflow: "hidden", // ไม่ให้เลื่อนออกนอกหน้าจอ
   },
   tabs: {
     display: "flex",
     justifyContent: "center",
     gap: "20px",
     marginBottom: "20px",
+    zIndex: 1, // ให้ปุ่มแท็บอยู่ด้านบนของเนื้อหาภาพยนตร์
   },
   tab: {
     padding: "10px 20px",
@@ -123,6 +127,9 @@ const styles = {
     flexWrap: "wrap",
     justifyContent: "center",
     gap: "20px",
+    marginTop: "20px", // เพิ่มระยะห่างระหว่างแท็บและภาพยนตร์
+    flexGrow: 1, // ให้พื้นที่นี้ขยายเต็มที่
+    overflowY: "auto", // ให้เลื่อนในแนวตั้งถ้าจำเป็น
   },
 };
 

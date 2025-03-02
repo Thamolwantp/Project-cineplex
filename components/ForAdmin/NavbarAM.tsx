@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Navbar: React.FC = () => {
+  const router = useRouter();
   const [selectedLang, setSelectedLang] = useState<string>("TH");
-  const [selectedAction, setSelectedAction] = useState<string>("manage");
 
   const styles = {
     navbar: {
@@ -25,74 +26,35 @@ const Navbar: React.FC = () => {
       backgroundColor: "#fff",
       display: "flex",
       justifyContent: "flex-start",
+      alignItems: "center",
       paddingLeft: "calc(15%)",
       paddingRight: "calc(15%)",
+      paddingTop: "20px", // เพิ่มระยะห่างด้านบน
+      paddingBottom: "20px", // เพิ่มระยะห่างด้านล่าง
+      height: "60px", // เพิ่มความสูงให้พื้นหลังใหญ่ขึ้น
     },
     navLinks: {
       listStyle: "none",
       display: "flex",
       gap: "30px",
     },
-    navLink: (isSelected: boolean) => ({
+    navLink: {
       textDecoration: "none",
-      color: isSelected ? "#fff" : "#000",
+      color: "#000",
       fontSize: "20px",
       fontWeight: "bold",
-      borderBottom: "none",
-      position: "relative",
-      paddingBottom: "5px",
-      cursor: "pointer",
-      display: "inline-block",
       padding: "10px 20px",
+      cursor: "pointer",
       transition: "color 0.3s ease",
-    }),
+    },
     hero: {
       display: "flex",
       justifyContent: "flex-start",
       alignItems: "center",
-      padding: "20px calc(15%)", // Adjust the padding here if needed
+      padding: "20px calc(15%)",
       gap: "20px",
-      backgroundColor: "#D6BB56", // Golden background
+      backgroundColor: "#D6BB56",
       position: "relative",
-      marginBottom: "0", // Ensure no space at the bottom
-    },
-    imageWrapper: {
-      position: "relative",
-      width: "100%",
-      height: "auto",
-    },
-    image: {
-      width: "100%",
-      height: "auto",
-      maxHeight: "500px",
-    },
-    textOverlay: {
-      position: "absolute",
-      bottom: "10px", // From the bottom of the image
-      left: "10px",   // From the left of the image
-      color: "#fff",
-      fontSize: "36px",
-      fontWeight: "bold",
-      zIndex: 1,
-    },
-    imageSection: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "#000", // Black background for the image section
-      padding: "0", // Remove padding to eliminate extra space
-      marginTop: "0", // No margin between sections
-    },
-    imageTextWrapper: {
-      position: "relative",
-      width: "100%",
-    },
-    actionContainer: {
-      display: "flex",
-      gap: "30px",
-      fontSize: "20px",
-      fontWeight: "bold",
-      color: "#fff",
     },
   };
 
@@ -126,13 +88,7 @@ const Navbar: React.FC = () => {
       <div style={styles.navLinksContainer}>
         <ul style={styles.navLinks}>
           <li>
-            <span
-              style={{
-                ...styles.navLink(false),
-                color: "#000",
-                cursor: "default",
-              }}
-            >
+            <span style={{ ...styles.navLink, cursor: "default" }}>
               Administrator Management
             </span>
           </li>
@@ -140,28 +96,14 @@ const Navbar: React.FC = () => {
       </div>
 
       <div style={styles.hero}>
-        <div style={styles.actionContainer}>
-          <span
-            onClick={() => setSelectedAction("manage")}
-            style={styles.navLink(selectedAction === "manage")}
-          >
-            จัดการภาพยนตร์
-          </span>
-          <span
-            onClick={() => setSelectedAction("add")}
-            style={styles.navLink(selectedAction === "add")}
-          >
-            เพิ่มภาพยนตร์
-          </span>
-        </div>
+        <span style={styles.navLink} onClick={() => router.push("/admin")}>
+          จัดการภาพยนตร์
+        </span>
+        <span style={styles.navLink} onClick={() => router.push("/adminp")}>
+          เพิ่มภาพยนตร์
+        </span>
       </div>
-
-      {/* รูปภาพแยกออกจาก hero */}
-      <div style={styles.imageSection}>
-        
-        </div>
-      </div>
-    
+    </div>
   );
 };
 

@@ -54,6 +54,9 @@ export default function Page() {
       </Head>
 
       <StepProgressBar />
+      <br /><br /><br />
+     
+     
 
       <div className="header">
         {/* ส่วนหัวของหน้า */}
@@ -62,7 +65,7 @@ export default function Page() {
       {/* Movie Poster Section */}
       <div className="posterSection">
         <div className="posterPlaceholder">
-        <img
+          <img
             src="https://storage-wp.thaipost.net/2024/02/S__25862218_0.jpg"
             alt="Movie Poster"
             className="posterImage"

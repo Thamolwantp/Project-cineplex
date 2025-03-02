@@ -61,10 +61,7 @@ export default function Page() {
             <label>Email</label>
             <input type="text" placeholder="Enter your email" />
           </div>
-          <div className="inputGroup">
-            <label>phone</label>
-            <input type="password" placeholder="Enter your phone" />
-          </div>
+         
           <button type="submit" className="submitButton">
             Submit
           </button>

@@ -68,12 +68,33 @@ CREATE TABLE "showtime" (
 -- CreateTable
 CREATE TABLE "user" (
     "id" SERIAL NOT NULL,
-    "user" TEXT,
+    "username" TEXT NOT NULL,
     "email" TEXT,
     "password" TEXT,
+    "otp" TEXT,
+    "otpExpiration" TIMESTAMP(3),
+    "isVerified" BOOLEAN NOT NULL DEFAULT false,
 
-    CONSTRAINT "username_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateTable
+CREATE TABLE "ticket" (
+    "ticket_id" SERIAL NOT NULL,
+    "user_id" INTEGER NOT NULL,
+    "showtime_id" INTEGER NOT NULL,
+    "seat_id" INTEGER NOT NULL,
+    "price" DOUBLE PRECISION NOT NULL,
+    "purchase_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "ticket_pkey" PRIMARY KEY ("ticket_id")
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "user_username_key" ON "user"("username");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
 -- AddForeignKey
 ALTER TABLE "seat_reservation" ADD CONSTRAINT "seat_reservations_seat_id_fkey" FOREIGN KEY ("seat_id") REFERENCES "seat"("seat_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -83,3 +104,12 @@ ALTER TABLE "seat_reservation" ADD CONSTRAINT "seat_reservations_showtime_id_fke
 
 -- AddForeignKey
 ALTER TABLE "showtime" ADD CONSTRAINT "showtimes_addmoive_id_fkey" FOREIGN KEY ("addmoive_id") REFERENCES "movie"("addmoive_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE "ticket" ADD CONSTRAINT "ticket_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ticket" ADD CONSTRAINT "ticket_showtime_id_fkey" FOREIGN KEY ("showtime_id") REFERENCES "showtime"("showtime_id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ticket" ADD CONSTRAINT "ticket_seat_id_fkey" FOREIGN KEY ("seat_id") REFERENCES "seat"("seat_id") ON DELETE CASCADE ON UPDATE CASCADE;
