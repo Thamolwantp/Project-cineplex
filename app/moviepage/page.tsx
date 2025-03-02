@@ -2,9 +2,9 @@
 
 import React, { useEffect } from "react";
 import MovieCard from "../Movie/Mcard/MovieCard";
+import "./moviepage.css";
 import Navbar from "@/components/Navbar";
 import Footter from "@/components/Footter";
-import "./moviepage.css";
 
 const MoviePage: React.FC = () => {
   const categories = [
@@ -71,9 +71,9 @@ const MoviePage: React.FC = () => {
         },
       ],
     },
-    
   ];
 
+  
   useEffect(() => {
     const isMoviePage = sessionStorage.getItem("isMoviePage");
 
@@ -87,8 +87,7 @@ const MoviePage: React.FC = () => {
 
   return (
     <div className="page">
-      <Navbar />
-
+       <Navbar />
       {categories.map((category, index) => (
         <div key={index}>
           <header className="header">
@@ -102,8 +101,7 @@ const MoviePage: React.FC = () => {
           </div>
         </div>
       ))}
-
-      <Footter />
+       <Footter />
     </div>
   );
 };

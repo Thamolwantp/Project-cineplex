@@ -33,7 +33,7 @@ export default function Page() {
             </div>
             <button className="sent">sent code</button>
           </form>
-          <button type="submit" className="submitButton">Sign up</button>
+          <button type="submit" className="submitButton" >Sign up</button>
         </div>
       </div>
     </>

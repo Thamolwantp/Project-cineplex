@@ -54,6 +54,9 @@ export default function Page() {
       </Head>
 
       <StepProgressBar />
+      <br /><br /><br />
+     
+     
 
       <div className="header">
         {/* ส่วนหัวของหน้า */}

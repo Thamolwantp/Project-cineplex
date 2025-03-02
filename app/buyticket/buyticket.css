@@ -11,8 +11,8 @@ body {
   height: 100vh;
   margin: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start; /* จัดให้เนื้อหาชิดขอบบน */
+  align-items: center; /* จัดให้เนื้อหากลางแนวนอน */
   flex-direction: column;
 }
 
@@ -27,13 +27,13 @@ body {
 
 .header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px; /* ลดระยะห่าง */
 }
 
 .posterSection {
   display: flex;
   justify-content: center;
-  margin-bottom: 80px;
+  margin-bottom: 30px; /* ลดระยะห่าง */
 }
 
 .posterPlaceholder {
@@ -71,7 +71,7 @@ body {
 
 .dateTimeSection,
 .timeSlotsSection {
-  margin-bottom: 20px;
+  margin-bottom: 10px; /* ลดระยะห่าง */
   background-color: transparent;
   padding: 0;
   border-radius: 0;
@@ -118,7 +118,7 @@ body {
 
 .confirmSection {
   text-align: center;
-  margin-top: 20px; /* ระยะห่างจากส่วนบน */
+  margin-top: 10px; /* ลดระยะห่าง */
 }
 
 .confirmButton {

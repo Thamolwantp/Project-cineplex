@@ -100,3 +100,25 @@ p {
   font-size: 0.9rem;
   margin-top: 1rem;
 }
+/* ปุ่ม Login with Google */
+.googleButton {
+  margin-top: 1rem;
+  background: #db4437; /* สีของปุ่ม Google */
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.googleButton:hover {
+  background: #c1351d;
+}
+
+.googleButton img {
+  width: 20px;
+  margin-right: 10px;
+}

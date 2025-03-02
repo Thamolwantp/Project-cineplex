@@ -48,12 +48,13 @@ const styles = {
     backgroundColor: "#2c2c2c",
     borderRadius: "10px",
     overflow: "hidden",
-    width: "200px",
+    width: "180px", // ปรับขนาดความกว้างให้เล็กลง
     margin: "10px",
+    height: "350px", // ปรับความสูงให้สั้นลง
   },
   moviePoster: {
     width: "100%",
-    height: "300px",
+    height: "250px", // ปรับความสูงของภาพให้สั้นลง
     objectFit: "cover",
   },
   movieInfo: {
@@ -63,26 +64,30 @@ const styles = {
     justifyContent: "flex-start",
     alignItems: "flex-start",
     textAlign: "left",
+    height: "calc(100% - 250px)", // ปรับให้เนื้อหาของการ์ดแสดงภายในพื้นที่ที่เหลือ
   },
   releaseDate: {
     margin: "0",
-    fontSize: "0.9rem",
+    fontSize: "0.8rem", // ปรับขนาดตัวอักษรให้เล็กลง
     color: "#ccc",
   },
   movieTitle: {
-    fontSize: "1.2rem",
+    fontSize: "1.1rem", // ปรับขนาดตัวอักษรให้เล็กลง
     fontWeight: "bold",
     margin: "5px 0",
     color: "white",
+    whiteSpace: "nowrap", // จำกัดไม่ให้ข้อความยาวเกินไป
+    overflow: "hidden",
+    textOverflow: "ellipsis", // แสดง "..." เมื่อข้อความยาวเกิน
   },
   movieType: {
     margin: "5px 0",
-    fontSize: "0.9rem",
+    fontSize: "0.8rem", // ปรับขนาดตัวอักษรให้เล็กลง
     color: "#ccc",
   },
   movieDuration: {
     margin: "5px 0",
-    fontSize: "0.9rem",
+    fontSize: "0.8rem", // ปรับขนาดตัวอักษรให้เล็กลง
     color: "#ccc",
   },
 };

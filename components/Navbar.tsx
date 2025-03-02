@@ -1,12 +1,29 @@
-"use client";
+"use client";  // เพิ่ม use client ที่จุดเริ่มต้นของไฟล์
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";  // ใช้ useRouter จาก next/navigation
 import "./navbar.css";  // Import the CSS file
 
 const Navbar: React.FC = () => {
   const [hover, setHover] = useState<string | null>(null);
   const [selectedLang, setSelectedLang] = useState<string>("TH");
   const [selectedLink, setSelectedLink] = useState<string>("");
+  const router = useRouter();  // ใช้ useRouter จาก next/navigation
+
+  // ฟังก์ชันสำหรับเปลี่ยนหน้าไปยังหน้า moviepage
+  const handleHomeClick = () => {
+    router.push("/moviepage");  // เปลี่ยนหน้าไปที่ moviepage
+  };
+
+  // ฟังก์ชันสำหรับเปลี่ยนหน้าไปยังหน้า movienow
+  const handleMoviesClick = () => {
+    router.push("/movienow");  // เปลี่ยนหน้าไปที่ movienow
+  };
+
+  // ฟังก์ชันสำหรับเปลี่ยนหน้าไปยัง buyticket
+  const handleShowtimesClick = () => {
+    router.push("/buyticket");  // เปลี่ยนหน้าไปที่ buyticket
+  };
 
   return (
     <nav className="navbar">
@@ -39,7 +56,11 @@ const Navbar: React.FC = () => {
             <li key={link}>
               <a
                 href="#"
-                onClick={() => setSelectedLink(link)}
+                onClick={() => {
+                  if (link === "home") handleHomeClick();
+                  if (link === "movies") handleMoviesClick();
+                  setSelectedLink(link);
+                }}
                 onMouseEnter={() => setHover(link)}
                 onMouseLeave={() => setHover(null)}
                 className={`navLink ${selectedLink === link || hover === link ? "active" : ""}`}
@@ -64,24 +85,29 @@ const Navbar: React.FC = () => {
         <h1 className="heroTitle">BUY TICKET</h1>
         <div className="verticalLine"></div>
         <div className="ticketSection">
-          <select className="input">
-            <option value="">ค้นหาภาพยนต์</option>
-            <option value="movie1">ภาพยนตร์ 1</option>
-            <option value="movie2">ภาพยนตร์ 2</option>
-            <option value="movie3">ภาพยนตร์ 3</option>
-          </select>
+          {/* Search for movie input */}
+          <input
+            className="input"
+            type="text"
+            placeholder="ค้นหาภาพยนตร์"
+            value={selectedLink}
+            onChange={(e) => setSelectedLink(e.target.value)}
+          />
           <span className="atText">AT</span>
+          {/* Cinema select */}
           <select className="input">
             <option value="">ค้นหาโรงภาพยนต์</option>
             <option value="cinema1">โรง 1</option>
             <option value="cinema2">โรง 2</option>
             <option value="cinema3">โรง 3</option>
           </select>
+          {/* Showtimes button */}
           <button
             type="button"
             className={`button ${hover === "showtimes" ? "hovered" : ""}`}
             onMouseOver={() => setHover("showtimes")}
             onMouseOut={() => setHover(null)}
+            onClick={handleShowtimesClick}  // เพิ่ม onClick ที่เรียกใช้ handleShowtimesClick
           >
             รอบฉาย
           </button>
