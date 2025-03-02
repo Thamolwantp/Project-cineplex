@@ -65,14 +65,14 @@ model showtime {
 }
 
 model user {
-  id            Int      @id @default(autoincrement())
-  username      String   @unique
-  email         String?  @unique
-  password      String?
-  otp           String?  
-  otpExpiration DateTime?
-  isVerified    Boolean  @default(false)
-  tickets       ticket[]
+  id       Int     @id(map: "username_pkey") @default(autoincrement())
+  username String
+  email    String?
+  password String?
+  otp        String?
+  otpExpiration DateTime?   
+  isVerified Boolean  @default(false)
+  tickets  ticket[]
 }
 
 

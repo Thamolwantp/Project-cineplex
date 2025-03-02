@@ -3,7 +3,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-interface Movie {
+interface MovieProps {
   id: number;
   title: string;
   releaseDate: string;
@@ -13,39 +13,17 @@ interface Movie {
 }
 
 interface MovieCardProps {
-  movie: Movie;
+  movie: MovieProps;
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
-  const router = useRouter(); // ใช้ useRouter สำหรับการนำทาง
-
-  const handleRedirect = () => {
-    router.push(`/buyticket?id=${movie.id}`);
-  };
-
   return (
-    <div style={styles.movieCard}>
-      <img
-        src={movie.posterUrl}
-        alt={`โปสเตอร์ของ ${movie.title}`}
-        style={styles.moviePoster}
-      />
-      <div style={styles.movieInfo}>
-        <p style={styles.releaseDate}>{movie.releaseDate}</p>
-        <h3 style={styles.movieTitle}>{movie.title}</h3>
-        <p style={styles.movieType}>{movie.type}</p>
-        <p style={styles.movieDuration}>{movie.duration}</p>
-
-        {/* ปุ่มสำหรับไปที่หน้า buyticket */}
-        <button
-          className="registerButton"
-          type="button"
-          onClick={handleRedirect} 
-          style={styles.button}
-        >
-          ซื้อตั๋ว
-        </button>
-      </div>
+    <div className="movie-card">
+      <img src={movie.posterUrl} alt={movie.title} />
+      <h3>{movie.title}</h3>
+      <p>ประเภท: {movie.type}</p>
+      <p>ความยาว: {movie.duration}</p>
+      <p>ฉายวันแรก: {movie.releaseDate}</p>
     </div>
   );
 };

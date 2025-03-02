@@ -30,7 +30,7 @@ export async function POST(req) {
         tag,
         title,
         category,
-        time,
+        time: Number(time),
         language,
         cinema,
         fdate: fdate ? new Date(fdate) : null,
