@@ -52,8 +52,12 @@ export default function Page() {
 
         {/* Movie Poster Section */}
         <div className="posterSection">
-          <div className="posterPlaceholder">
-            <p>Movie Poster Here</p>
+        <div className="posterPlaceholder">
+          <img 
+            src="https://storage-wp.thaipost.net/2024/02/S__25862218_0.jpg" 
+            alt="Movie Poster" 
+            className="moviePoster"
+          />
           </div>
           <div className="detailsSection">
             <h2>ธี่หยด</h2>
