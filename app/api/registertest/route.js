@@ -28,8 +28,8 @@ export async function POST(req) {
     // ✅ Hash รหัสผ่าน
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // ✅ บันทึกข้อมูลผู้ใช้ลงฐานข้อมูล (ไม่มี `null`)
-    const newUser = await prisma.user.create({
+    // ✅ บันทึกข้อมูลผู้ใช้ลงฐานข้อมูล (ไม่มี `null`) แต่ไม่ต้องเก็บตัวแปร
+    await prisma.user.create({
       data: {
         username,
         email,

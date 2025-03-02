@@ -1,5 +1,4 @@
 "use client";
-import Head from 'next/head';
 import React, { useState } from "react";
 import NavbarAM from '@/components/ForAdmin/NavbarAM';
 import FooterAM from '@/components/ForAdmin/FootterAM';
@@ -165,7 +164,7 @@ const MovieForm = () => {
           </form>
         </div>
       </div>
-      < FooterAM/>
+      <FooterAM />
     </>
   );
 };

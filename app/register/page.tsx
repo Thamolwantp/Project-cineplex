@@ -48,7 +48,7 @@ export default function Page() {
       } else {
         setMessage('เกิดข้อผิดพลาดในการส่งรหัส OTP');
       }
-    } catch (error) {
+    } catch {
       setMessage('เกิดข้อผิดพลาดในการเชื่อมต่อ');
     }
   };
