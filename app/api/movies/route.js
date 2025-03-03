@@ -14,11 +14,13 @@ export async function GET() {
 
 export async function POST(req) {
   try {
+    const body = await req.json();
+    console.log("Received Data:", body); // ตรวจสอบข้อมูลที่ได้รับ
     const { 
       tag, title, category, time, language, cinema, 
       fdate, actor, director, resume, image_url, ldate, 
       timer1, timer2, timer3 
-    } = await req.json();
+    } = body;
 
 
     if (!title || !category || !language) {
@@ -30,9 +32,9 @@ export async function POST(req) {
         tag,
         title,
         category,
-        time,
+        time: Number(time),
         language,
-        cinema,
+        cinema: cinema.length > 0 ? cinema.join(", ") : null,
         fdate: fdate ? new Date(fdate) : null,
         actor,
         director,
@@ -65,6 +67,7 @@ export async function DELETE(req) {
 
     return NextResponse.json(deletedMovie, { status: 200 });
   } catch (error) {
+    console.error("Database Insert Error:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

@@ -6,19 +6,9 @@ import './bill.css';
 import StepProgressBar from "@/components/StepProgressBar";
 
 export default function Page() {
-  const [selectedDate, setSelectedDate] = useState<string | null>(null);
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [email, setEmail] = useState<string>("");
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [isPaymentCompleted, setIsPaymentCompleted] = useState<boolean>(false);
-
-  const handleDateClick = (date: string) => {
-    setSelectedDate(date);
-  };
-
-  const handleTimeClick = (time: string) => {
-    setSelectedTime(time);
-  };
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -62,8 +52,12 @@ export default function Page() {
 
         {/* Movie Poster Section */}
         <div className="posterSection">
-          <div className="posterPlaceholder">
-            <p>Movie Poster Here</p>
+        <div className="posterPlaceholder">
+          <img 
+            src="https://storage-wp.thaipost.net/2024/02/S__25862218_0.jpg" 
+            alt="Movie Poster" 
+            className="moviePoster"
+          />
           </div>
           <div className="detailsSection">
             <h2>ธี่หยด</h2>

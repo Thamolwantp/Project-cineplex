@@ -99,7 +99,7 @@ const Navbar: React.FC = () => {
         <span style={styles.navLink} onClick={() => router.push("/admin")}>
           จัดการภาพยนตร์
         </span>
-        <span style={styles.navLink} onClick={() => router.push("/adminp")}>
+        <span style={styles.navLink} onClick={() => router.push("/moviekak")}>
           เพิ่มภาพยนตร์
         </span>
       </div>

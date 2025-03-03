@@ -2,26 +2,25 @@
 
 import { useState } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/navigation'; // นำเข้า useRouter
-import './register.css';
+import { useRouter } from 'next/navigation';
+import './registertest.css';
 
 export default function Page() {
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
-  const [inputOtp, setInputOtp] = useState(''); // สถานะเก็บ OTP ที่ผู้ใช้กรอก
+  const [inputOtp, setInputOtp] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
-  const router = useRouter(); // กำหนด useRouter
+  const router = useRouter();
 
   // ฟังก์ชันสร้าง OTP แบบสุ่ม
   const generateOtp = () => {
-    const otpCode = Math.floor(100000 + Math.random() * 900000); // สร้างรหัส OTP 6 หลัก
-    return otpCode.toString();
+    return Math.floor(100000 + Math.random() * 900000).toString();
   };
 
-  // ฟังก์ชันส่งรหัส OTP ไปยังอีเมล
-  const handleSendCode = async (e: React.FormEvent) => {
+  // ฟังก์ชันส่งรหัส OTP
+  const handleSendCode = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!email) {
@@ -29,17 +28,13 @@ export default function Page() {
       return;
     }
 
-    // สร้าง OTP
     const generatedOtp = generateOtp();
-    setOtp(generatedOtp); // เก็บ OTP สำหรับตรวจสอบในอนาคต
+    setOtp(generatedOtp);
 
-    // ส่งอีเมล (ใช้ API ส่งอีเมลจริงที่นี่ เช่น Nodemailer หรือ SendGrid)
     try {
       const res = await fetch('/api/otp/sendOtp', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, otp: generatedOtp }),
       });
 
@@ -53,29 +48,38 @@ export default function Page() {
     }
   };
 
-  // ฟังก์ชันสำหรับการสมัครสมาชิก
-  const handleSignUp = (e: React.FormEvent) => {
+  // ฟังก์ชันสมัครสมาชิก
+  const handleSignUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    if (!inputOtp) {
-      setMessage('กรุณากรอกรหัส OTP');
-      return;
-    }
-
-    // ตรวจสอบว่า OTP ที่กรอกตรงกับ OTP ที่ส่งไป
-    if (inputOtp !== otp) {
+    if (!inputOtp || inputOtp !== otp) {
       setMessage('รหัส OTP ไม่ถูกต้อง');
       return;
     }
 
-    // ตรวจสอบว่า password และ confirm password ตรงกัน
     if (password !== confirmPassword) {
       setMessage('รหัสผ่านไม่ตรงกัน');
       return;
     }
 
-    // หลังจากทุกอย่างถูกต้อง ไปที่หน้า moviepage
-    router.push('/moviepage');
+    try {
+      const res = await fetch('/api/registertest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setMessage('สมัครสมาชิกสำเร็จ!');
+        router.push('/moviepage');
+      } else {
+        setMessage(data.error || 'สมัครสมาชิกไม่สำเร็จ');
+      }
+    } catch (error) {
+      setMessage('เกิดข้อผิดพลาดในการสมัครสมาชิก');
+    }
   };
 
   return (
@@ -115,17 +119,17 @@ export default function Page() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
-            <div className="inputGroup">
-              <label>A verification code has been sent to your email</label>
-              <input
-                type="password"
-                placeholder="verify code..."
-                value={inputOtp}
-                onChange={(e) => setInputOtp(e.target.value)} // เก็บ OTP ที่กรอก
-              />
-            </div>
             <button className="sent" type="submit">Send code</button>
           </form>
+          <div className="inputGroup">
+            <label>A verification code has been sent to your email</label>
+            <input
+              type="text"
+              placeholder="Verify code..."
+              value={inputOtp}
+              onChange={(e) => setInputOtp(e.target.value)}
+            />
+          </div>
           <button className="submitButton" onClick={handleSignUp}>Sign up</button>
           {message && <p>{message}</p>}
         </div>

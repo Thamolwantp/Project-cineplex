@@ -75,7 +75,7 @@ export default function Page() {
           <button
             className="registerButton"
             type="button"
-            onClick={() => handleRedirect('/register')}
+            onClick={() => handleRedirect('/registertest')}
           >
             Register
           </button>

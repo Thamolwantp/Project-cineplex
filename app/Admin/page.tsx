@@ -1,8 +1,8 @@
 "use client";
-import Head from 'next/head';
+
 import React, { useEffect, useState } from "react";
-import MovieCard from "./MovieCard";
-import "./admin.css";
+import MovieCard from "../admin/MovieCard";
+import "./admind.css";
 import Navbar from "@/components/ForAdmin/NavbarAM";
 import Footter from "@/components/Footter";
 
@@ -148,6 +148,7 @@ const MoviePage: React.FC = () => {
           </div>
         </div>
       ))}
+      
       <Footter />
     </div>
   );

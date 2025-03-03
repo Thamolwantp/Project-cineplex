@@ -3,7 +3,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-interface Movie {
+interface MovieProps {
   id: number;
   title: string;
   releaseDate: string;
@@ -13,11 +13,11 @@ interface Movie {
 }
 
 interface MovieCardProps {
-  movie: Movie;
+  movie: MovieProps;
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
-  const router = useRouter(); // ใช้ useRouter สำหรับการนำทาง
+  const router = useRouter();
 
   const handleRedirect = () => {
     router.push(`/buyticket?id=${movie.id}`);
@@ -25,22 +25,16 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
 
   return (
     <div style={styles.movieCard}>
-      <img
-        src={movie.posterUrl}
-        alt={`โปสเตอร์ของ ${movie.title}`}
-        style={styles.moviePoster}
-      />
+      <img src={movie.posterUrl} alt={movie.title} style={styles.moviePoster} />
       <div style={styles.movieInfo}>
-        <p style={styles.releaseDate}>{movie.releaseDate}</p>
-        <h3 style={styles.movieTitle}>{movie.title}</h3>
-        <p style={styles.movieType}>{movie.type}</p>
-        <p style={styles.movieDuration}>{movie.duration}</p>
-
-        {/* ปุ่มสำหรับไปที่หน้า buyticket */}
+        <h3>{movie.title}</h3>
+        <p>ประเภท: {movie.type}</p>
+        <p>ความยาว: {movie.duration}</p>
+        <p>ฉายวันแรก: {movie.releaseDate}</p>
         <button
           className="registerButton"
           type="button"
-          onClick={handleRedirect} 
+          onClick={handleRedirect}
           style={styles.button}
         >
           ซื้อตั๋ว
@@ -57,18 +51,19 @@ const styles = {
     overflow: "hidden",
     width: "200px",
     margin: "10px",
-    textAlign: "center",
+    textAlign: "center" as const,
   },
   moviePoster: {
     width: "100%",
     height: "300px",
-    objectFit: "cover",
+    objectFit: "cover" as const,
   },
   movieInfo: {
     padding: "10px",
     display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    flexDirection: "column" as const,
+    alignItems: "center" as const,
+    color: "#fff",
   },
   button: {
     marginTop: "10px",

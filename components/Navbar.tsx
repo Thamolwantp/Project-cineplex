@@ -97,9 +97,9 @@ const Navbar: React.FC = () => {
           {/* Cinema select */}
           <select className="input">
             <option value="">ค้นหาโรงภาพยนต์</option>
-            <option value="cinema1">โรง 1</option>
-            <option value="cinema2">โรง 2</option>
-            <option value="cinema3">โรง 3</option>
+            <option value="cinema1">Vestra Cineplex</option>
+            <option value="cinema2">Vestra Cineplex</option>
+            <option value="cinema3">Vestra Cineplex</option>
           </select>
           {/* Showtimes button */}
           <button

@@ -1,5 +1,4 @@
 "use client";
-import Head from 'next/head';
 import React, { useState } from "react";
 import NavbarAM from '@/components/ForAdmin/NavbarAM';
 import FooterAM from '@/components/ForAdmin/FootterAM';
@@ -64,7 +63,7 @@ const MovieForm = () => {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm">ชื่อเรื่อง</label>
+                <label className="block text-sm">ชื่อเรื่อง.</label>
                 <input type="text" className="w-full bg-gray-800 text-white p-2 rounded border border-gray-700" />
               </div>
               <div>
@@ -165,7 +164,7 @@ const MovieForm = () => {
           </form>
         </div>
       </div>
-      < FooterAM/>
+      <FooterAM />
     </>
   );
 };

@@ -1,29 +1,37 @@
 import nodemailer from 'nodemailer';
 
-export async function POST(req, res) {
-  const { email, otp } = await req.json();
-
-  // สร้างการเชื่อมต่อกับบริการอีเมล (เช่น Gmail)
-  const transporter = nodemailer.createTransport({
-    service: 'gmail', // ใช้บริการ Gmail หรือบริการอื่นๆ
-    auth: {
-      user: 'testcineplex976@gmail.com', // ใส่ที่อยู่อีเมลที่ใช้ส่ง
-      pass: 'sgfe ekof cwwn sshu', // ใส่รหัสผ่านหรือรหัสแอพ
-    },
-  });
-
-  const mailOptions = {
-    from: 'testcineplex976@gmail.com', // อีเมลผู้ส่ง
-    to: email, // อีเมลผู้รับ
-    subject: 'Your OTP Code',
-    text: `Your OTP code is: ${otp}`, // ข้อความที่ส่งในอีเมล
-  };
-
+export async function POST(req) {
   try {
+    const { email, otp } = await req.json();
+
+    // ตั้งค่าเซิร์ฟเวอร์อีเมล (Gmail)
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'testcineplex976@gmail.com', // อีเมลของคุณ
+        pass: 'sgfe ekof cwwn sshu', // รหัสผ่านแอป (App Password)
+      },
+    });
+
+    const mailOptions = {
+      from: 'testcineplex976@gmail.com',
+      to: email,
+      subject: 'Your OTP Code',
+      text: `Your OTP code is: ${otp}`, // ส่งรหัส OTP ในอีเมล
+    };
+
     await transporter.sendMail(mailOptions);
-    return res.status(200).json({ message: 'OTP sent successfully' });
+
+    return new Response(JSON.stringify({ message: 'OTP sent successfully' }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: 'Failed to send OTP', error: error.message });
+    console.error('Error sending OTP:', error);
+    return new Response(JSON.stringify({ message: 'Failed to send OTP', error: error.message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 }
